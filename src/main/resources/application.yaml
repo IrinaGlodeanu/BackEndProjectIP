@@ -8,11 +8,11 @@ spring:
   application:
      name: docs # Service name
   datasource:
-    url: jdbc:postgre:thin:@localhost:5432/docs
+    url: jdbc:postgres:thin:@localhost:5432/docs
 #    username: docs
 #    password: docs
     driver-class-name: org.postgresql.Driver
   jpa:
     database-platform: org.hibernate.dialect.PostgreSQLDialect
     hibernate:
-      ddl-auto: update
+      ddl-auto: create

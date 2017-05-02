@@ -1,28 +1,28 @@
-package com.documents.entity;
-
-import org.hibernate.annotations.Entity;
+package com.documents.models;
 
 import javax.persistence.Column;
 import javax.persistence.Id;
 
-/**
- * @author Elena Hardon
- * @date 4/27/17.
- */
+import org.hibernate.annotations.Entity;
+
+
 @Entity
 public class Secretary {
 
     @Id
     private Long id;
 
-    @Column(name = "first_name")
+    @Column(name = "firstName")
     private String firstName;
 
-    @Column(name = "last_name")
+    @Column(name = "lastName")
     private String lastName;
 
     @Column(name = "webmail")
     private String webmail;
+
+    @Column(name = "password")
+    private String password;
 
     public Long getId() {
         return id;
@@ -54,5 +54,13 @@ public class Secretary {
 
     public void setWebmail(String webmail) {
         this.webmail = webmail;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 }
