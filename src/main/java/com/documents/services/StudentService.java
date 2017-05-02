@@ -1,6 +1,6 @@
-package com.documents.service;
+package com.documents.services;
 
-import com.documents.entity.Student;
+import com.documents.models.Student;
 
 /**
  * @author Elena Hardon

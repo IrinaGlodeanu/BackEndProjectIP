@@ -1,19 +1,21 @@
-package com.documents.service;
+package com.documents.services;
 
-import com.documents.entity.Student;
-import com.documents.repository.StudentRepository;
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 
-import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
-import java.util.ArrayList;
-import java.util.List;
+import com.documents.models.Student;
+import com.documents.repository.StudentRepository;
+
 
 /**
- * @author Elena Hardon
- * @date 4/27/17.
+ * Implements all Crud services for the Student
  */
 public class StudentServiceImpl implements StudentService {
 

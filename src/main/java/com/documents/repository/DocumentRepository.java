@@ -1,8 +1,9 @@
 package com.documents.repository;
 
-import com.documents.entity.Document;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
+
+import com.documents.models.Document;
 
 /**
  * @author Elena Hardon

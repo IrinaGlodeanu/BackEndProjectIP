@@ -1,5 +1,6 @@
-package com.documents.entity;
+package com.documents.models;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 
@@ -8,13 +9,12 @@ import javax.persistence.Id;
  * @date 4/27/17.
  */
 @Entity
-public class Request {
+public class Document {
 
     @Id
     private Long id;
 
-    private Long studentId;
-
-    private Long documentId;
+    @Column(name = "document_type")
+    private String documentType;
 
 }
