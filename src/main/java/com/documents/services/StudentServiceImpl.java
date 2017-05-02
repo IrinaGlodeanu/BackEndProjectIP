@@ -1,13 +1,10 @@
-package com.documents.service;
+package com.documents.services;
 
-import com.documents.entity.Student;
-import com.documents.repository.StudentRepository;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import com.documents.models.Student;
+import com.documents.repositories.StudentRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
-import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -15,12 +12,8 @@ import java.util.List;
  * @author Elena Hardon
  * @date 4/27/17.
  */
+@Service
 public class StudentServiceImpl implements StudentService {
-
-    private static final Logger LOGGER = LoggerFactory.getLogger(StudentServiceImpl.class);
-
-    @PersistenceContext
-    private EntityManager entityManager;
 
     @Autowired
     private StudentRepository studentRepository;

@@ -7,3 +7,7 @@ server:
 spring:
   application:
      name: docs # Service name
+  datasource:
+    url: jdbc:postgresql://localhost:5432/docs
+    username: postgres
+    password: rc

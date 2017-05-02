@@ -1,9 +1,8 @@
-package com.documents.entity;
+package com.documents.models;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
-import java.sql.Date;
 
 /**
  * @author Elena Hardon
@@ -11,15 +10,16 @@ import java.sql.Date;
  */
 
 /**
- * This class represents the entity for the student table.
+ * This class represents the model for the student table.
  */
 @Entity
 public class Student {
+
     @Id
     private Long id;
 
-    @Column(name = "cnp")
-    private Long cnp;
+    @Column(name = "matricol_nr")
+    private String mantricolNumber;
 
     @Column(name = "first_name")
     private String firstName;
@@ -27,20 +27,26 @@ public class Student {
     @Column(name = "last_name")
     private String lastName;
 
+    @Column(name = "cnp")
+    private Long cnp;
+
     @Column(name = "card_id")
     private String identityCardId;
 
+    @Column(name = "father_initial")
+    private String fatherInitial;
+
     @Column(name = "address")
     private String address;
-
-    @Column(name = "f_initial")
-    private String fatherInitial;
 
     @Column(name = "webmail")
     private String webmail;
 
     @Column(name = "birth_date")
-    private Date birthDate;
+    private String birthDate;
+
+    @Column(name = "password")
+    private String password;
 
     public Long getId() {
         return id;
@@ -50,12 +56,12 @@ public class Student {
         this.id = id;
     }
 
-    public Long getCnp() {
-        return cnp;
+    public String getMantricolNumber() {
+        return mantricolNumber;
     }
 
-    public void setCnp(Long cnp) {
-        this.cnp = cnp;
+    public void setMantricolNumber(String mantricolNumber) {
+        this.mantricolNumber = mantricolNumber;
     }
 
     public String getFirstName() {
@@ -74,20 +80,20 @@ public class Student {
         this.lastName = lastName;
     }
 
+    public Long getCnp() {
+        return cnp;
+    }
+
+    public void setCnp(Long cnp) {
+        this.cnp = cnp;
+    }
+
     public String getIdentityCardId() {
         return identityCardId;
     }
 
     public void setIdentityCardId(String identityCardId) {
         this.identityCardId = identityCardId;
-    }
-
-    public String getAddress() {
-        return address;
-    }
-
-    public void setAddress(String address) {
-        this.address = address;
     }
 
     public String getFatherInitial() {
@@ -98,6 +104,14 @@ public class Student {
         this.fatherInitial = fatherInitial;
     }
 
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
     public String getWebmail() {
         return webmail;
     }
@@ -106,11 +120,19 @@ public class Student {
         this.webmail = webmail;
     }
 
-    public Date getBirthDate() {
+    public String getBirthDate() {
         return birthDate;
     }
 
-    public void setBirthDate(Date birthDate) {
+    public void setBirthDate(String birthDate) {
         this.birthDate = birthDate;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 }

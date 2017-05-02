@@ -1,8 +1,8 @@
-package com.documents.entity;
+package com.documents.models;
 
-import org.hibernate.annotations.Entity;
 
 import javax.persistence.Column;
+import javax.persistence.Entity;
 import javax.persistence.Id;
 
 /**
