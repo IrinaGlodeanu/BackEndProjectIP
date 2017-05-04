@@ -1,4 +1,4 @@
-package com.documents.entity;
+package com.documents.models;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;

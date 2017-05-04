@@ -1,4 +1,4 @@
-package com.documents.service;
+package com.documents.services;
 
 import java.util.List;
 

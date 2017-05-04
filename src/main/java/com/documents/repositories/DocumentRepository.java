@@ -1,6 +1,6 @@
-package com.documents.repository;
+package com.documents.repositories;
 
-import com.documents.entity.Document;
+import com.documents.models.Document;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
