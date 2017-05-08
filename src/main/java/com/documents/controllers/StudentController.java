@@ -19,6 +19,7 @@ import com.documents.services.StudentService;
  * @date 5/2/17.
  */
 @RestController
+@RequestMapping(value = "/student")
 public class StudentController {
 
     @Autowired
@@ -27,11 +28,11 @@ public class StudentController {
     /**
      * Get a specific student with a specific id
      *
-     * @param id
+     * @param id of the student you want searched
      *
-     * @return
+     * @return the student with that particular id (if exists in the database)
      */
-    @RequestMapping(value = "/student/{id}", method = RequestMethod.GET)
+    @RequestMapping(value = "/{id}", method = RequestMethod.GET)
     public ResponseEntity<Student> searchStudentById(@PathVariable Long id) {
         Student student = studentService.findById(id);
         if (student != null) {
@@ -44,9 +45,9 @@ public class StudentController {
     /**
      * Return all the students from database
      *
-     * @return
+     * @return a List with all the students that are in the database
      */
-    @RequestMapping(value = "/student/all", method = RequestMethod.GET)
+    @RequestMapping(value = "/all", method = RequestMethod.GET)
     public ResponseEntity<List<Student>> getAllStudents() {
         List<Student> all = studentService.findAll();
         return new ResponseEntity<List<Student>>(all, HttpStatus.OK);
@@ -55,11 +56,11 @@ public class StudentController {
     /**
      * Delete a specific student from database
      *
-     * @param id
+     * @param id of the student you want to delete it
      *
-     * @return
+     * @return - a status if the student with that id was delete it or not
      */
-    @RequestMapping(value = "/student/{id}", method = RequestMethod.DELETE)
+    @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
     public ResponseEntity<Student> deleteStudent(@PathVariable Long id) {
         Student student = studentService.findById(id);
         if (student != null) {
@@ -73,9 +74,9 @@ public class StudentController {
     /**
      * Insert a new student into the database
      *
-     * @param newStudent
+     * @param newStudent - a new Student object that you want to insert into the database
      *
-     * @return
+     * @return - the newStudent inserted plus a status if was successfully inserted
      */
 
     @RequestMapping(value = "/student", method = RequestMethod.POST)
@@ -87,13 +88,13 @@ public class StudentController {
     /**
      * Update a student data(change his information in database)
      *
-     * @param student
-     * @param id
-     *
-     * @return
+     * @param student - a new Student Object
+     * @param id - the id of the student where you want to insert new data
+     *  You save into the database the changed student object
+     * @return return a status if was successfully updated
      */
 
-    @RequestMapping(value = "/student/{id}", method = RequestMethod.PUT)
+    @RequestMapping(value = "/{id}", method = RequestMethod.PUT)
     public ResponseEntity<Student> updateStudent(@RequestBody Student student, @PathVariable Long id) {
         if (!id.equals(student.getId())) {
             return new ResponseEntity<Student>(HttpStatus.BAD_REQUEST);
