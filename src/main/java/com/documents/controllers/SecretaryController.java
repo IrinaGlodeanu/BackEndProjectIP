@@ -13,7 +13,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 /**
- * Created by Georgiana&Ecaterina on 07.05.2017.
+ * @author Georgiana&Ecaterina 
+ * @date 07.05.2017.
  */
 @RestController
 @RequestMapping(value = "/secretary")
