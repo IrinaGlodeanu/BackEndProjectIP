@@ -23,7 +23,7 @@ public class SecretaryController {
     @Autowired
     private SecretaryService secretaryService;
 
-    @RequestMapping(value = "/secretary/{id}", method = RequestMethod.GET)
+    @RequestMapping(value = "/{id}", method = RequestMethod.GET)
     public ResponseEntity<Secretary> searchStudentById(@PathVariable Long id) {
         Secretary secretary = secretaryService.findById(id);
         if (secretary != null) {
