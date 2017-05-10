@@ -9,8 +9,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Created by Georgiana&Ecaterina on 07.05.2017.
+ * @author Georgiana&Ecaterina 
+ * @date 07.05.2017.
  */
+@Service
 public class SecretaryServiceImpl implements SecretaryService {
     @Autowired
     private SecretaryRepository secretaryRepository;
