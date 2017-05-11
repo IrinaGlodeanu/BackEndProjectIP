@@ -21,6 +21,9 @@ public class Secretary {
     @Column(name = "last_name")
     private String lastName;
 
+    @Column(name = "password")
+    private String password;
+
     @Column(name = "webmail")
     private String webmail;
 
@@ -46,6 +49,14 @@ public class Secretary {
 
     public void setLastName(String lastName) {
         this.lastName = lastName;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 
     public String getWebmail() {
