@@ -5,9 +5,7 @@ import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 
-/**
- * Created by AlenaHa on 10.05.2017.
- */
+
 @Entity
 @DiscriminatorValue("Cerere Situatie Scolara")
 public class ScolarSituationDocument extends Document {

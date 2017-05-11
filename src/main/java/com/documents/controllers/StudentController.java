@@ -89,8 +89,9 @@ public class StudentController {
      * Update a student data(change his information in database)
      *
      * @param student - a new Student Object
-     * @param id - the id of the student where you want to insert new data
-     *  You save into the database the changed student object
+     * @param id      - the id of the student where you want to insert new data
+     *                You save into the database the changed student object
+     *
      * @return return a status if was successfully updated
      */
 
@@ -102,4 +103,6 @@ public class StudentController {
         Student newStudent = studentService.save(student);
         return new ResponseEntity<Student>(newStudent, HttpStatus.OK);
     }
+
+
 }
