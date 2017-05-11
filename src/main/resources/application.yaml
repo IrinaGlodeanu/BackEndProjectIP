@@ -10,4 +10,7 @@ spring:
   datasource:
     url: jdbc:postgresql://localhost:5432/docs
     username: postgres
-    password: rc
+    password: admin
+  jpa:
+    hibernate:
+          ddl-auto: update
