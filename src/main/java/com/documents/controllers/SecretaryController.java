@@ -1,8 +1,5 @@
 package com.documents.controllers;
 
-import com.documents.models.Secretary;
-import com.documents.services.SecretaryService;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -12,20 +9,22 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.documents.models.Secretary;
+import com.documents.services.SecretaryService;
+
 /**
  * @author Georgiana&Ecaterina 
  * @date 07.05.2017.
  */
 @RestController
 @RequestMapping(value = "/secretary")
-
 public class SecretaryController {
 
     @Autowired
     private SecretaryService secretaryService;
 
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
-    public ResponseEntity<Secretary> searchStudentById(@PathVariable Long id) {
+    public ResponseEntity<Secretary> searchSecretaryById(@PathVariable Long id) {
         Secretary secretary = secretaryService.findById(id);
         if (secretary != null) {
             return new ResponseEntity<Secretary>(secretary, HttpStatus.OK);
