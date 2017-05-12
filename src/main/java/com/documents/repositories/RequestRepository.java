@@ -1,8 +1,9 @@
 package com.documents.repositories;
 
-import com.documents.models.Request;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
+
+import com.documents.models.Request;
 
 /**
  * @author Elena Hardon
@@ -10,5 +11,5 @@ import org.springframework.stereotype.Repository;
  */
 
 @Repository
-public interface RequestRepository extends CrudRepository<Request, Long> { // gresisei aici cand ai pus autocomplete
+public interface RequestRepository extends CrudRepository<Request, Long> {
 }
