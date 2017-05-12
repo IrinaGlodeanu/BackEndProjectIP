@@ -13,4 +13,14 @@ import com.documents.models.Student;
 @Repository
 public interface StudentRepository extends CrudRepository<Student, Long> {
 
+    /**
+     * Query that search the webmail and the password(for login)
+     *
+     * @param webmail
+     * @param password
+     *
+     * @return Student Object
+     */
+    Student findByWebmailAndPassword(String webmail, String password);
+
 }

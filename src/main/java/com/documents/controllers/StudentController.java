@@ -14,10 +14,6 @@ import org.springframework.web.bind.annotation.RestController;
 import com.documents.models.Student;
 import com.documents.services.StudentService;
 
-/**
- * @author Elena Hardon
- * @date 5/2/17.
- */
 @RestController
 @RequestMapping(value = "/student")
 public class StudentController {
@@ -104,5 +100,17 @@ public class StudentController {
         return new ResponseEntity<Student>(newStudent, HttpStatus.OK);
     }
 
-
+    /**
+     * Get a student object if we find the webmail and password in the database(Login purpose)
+     *
+     * @param webmail
+     * @param password
+     *
+     * @return Student Object
+     */
+    @RequestMapping(value = "/login/{webmail}/{password}", method = RequestMethod.GET)
+    public ResponseEntity<Student> getStudentForLogin(@PathVariable String webmail, @PathVariable Long password) {
+        Student student = studentService.getStudent(webmail, password.toString());
+        return new ResponseEntity<Student>(student, HttpStatus.OK);
+    }
 }

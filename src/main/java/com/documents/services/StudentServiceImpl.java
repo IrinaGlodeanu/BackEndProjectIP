@@ -40,4 +40,8 @@ public class StudentServiceImpl implements StudentService {
     }
 
 
+    @Override
+    public Student getStudent(String webmail, String password) {
+        return studentRepository.findByWebmailAndPassword(webmail, password);
+    }
 }
