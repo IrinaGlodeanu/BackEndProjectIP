@@ -56,8 +56,8 @@ public class InterruptionRequestDocumentController {
 
 
     @RequestMapping(value = "/interruption", method = RequestMethod.POST)
-    public ResponseEntity<InterruptionRequestDocument> createInterruptionRequest(@RequestBody InterruptionRequestDocument newStudent) {
-        InterruptionRequestDocument savedRequestDocument = interruptionService.save(newStudent);
+    public ResponseEntity<InterruptionRequestDocument> createInterruptionRequest(@RequestBody InterruptionRequestDocument newRequestDocument) {
+        InterruptionRequestDocument savedRequestDocument = interruptionService.save(newRequestDocument);
         return new ResponseEntity<InterruptionRequestDocument>(savedRequestDocument, HttpStatus.CREATED);
     }
 
