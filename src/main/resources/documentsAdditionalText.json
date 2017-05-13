@@ -14,5 +14,33 @@
     "text3": ", an universitar ",
     "text4": "vă rog să-mi aprobați eliberarea situației școlare pentru studiile de licență/master. Solicit acest lucru din motive personale.Anexez prezenței chitanța emisă de B.R.D.",
     "final": "Domnului Decan al Facultății de Informatică, Iași"
+  },
+  "withdrawal_document_request": {
+    "introduction": "Domnule Decan,",
+    "text1": "Subsemnatul/a ",
+    "text2": " posesor C.I. seria ",
+    "text3": ", nr. ",
+    "text4": " student/fost student/ la Facultatea de Informatica, în anul ",
+    "text5": ", an universitar ",
+    "text6": ", cursuri de ",
+    "text7": ", va rog sa-mi aprobati  ",
+    "final": " Data,                                                                               Semnatura,                                              ",
+
+    "introduction2": "DECLARATIE",
+    "text21": "Subsemnatul/a ",
+    "text22": " posesor C.I. seria ",
+    "text23": ", nr. ",
+    "text24": ", am primit diploma de Bacalaureat in original, seria  ",
+    "text25": ", nr. ",
+    "text26": " si foaia matricola in original nr. ",
+    "final2": " Data,                                                                               Semnatura,                                              ",
+
+    "text31": "Sunt necesare urmatoarele vize:",
+    "text32": "Facultatea de Informatica-Evidente Taxe, parter, Biroul 201(stanga)",
+    "text33": "BIBLIOTECA FACULTATII DE INFORMATICA (Corp C, ET.3)",
+    "text34": "SERVICIUL CONTABILITATE-DEBITE  (corp J)",
+    "text35": "SERVICIUL PENTRU PROBLEME SOCIAL-STUDENTESTI (Caminul 12, Codrescu)",
+    "text36": "COMPARTIMENTUL BURSE (Caminul 12, Codrescu)",
+    "text37": "BIBLIOTECA CENTRALA UNIVERSITARA “M.EMINESCU"
   }
 }
