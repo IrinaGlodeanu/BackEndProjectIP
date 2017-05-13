@@ -14,5 +14,26 @@
     "text3": ", an universitar ",
     "text4": "vă rog să-mi aprobați eliberarea situației școlare pentru studiile de licență/master. Solicit acest lucru din motive personale.Anexez prezenței chitanța emisă de B.R.D.",
     "final": "Domnului Decan al Facultății de Informatică, Iași"
+  },
+  "license_register_request": {
+    "head1": "FACULTATEA DE INFORMATICA                        SESIUNEA ",
+    "head2": "EXAMEN DE LICENTA",
+    "head3": "Specializarea:Informatica",
+    "head4": "Curs:Zi",
+    "introduction": "FISA DE INSCRIERE LA EXAMENUL DE LICENTA",
+    "text1": "Numele si prenumele: ",
+    "text2": "Nr. matricol: ",
+    "text3": "Anul absolvirii: ",
+    "text4": "Durata studiilor:         ",
+    "text5": "ani ",
+    "text6": "Chitanta certificat competenta lingvistica:          data ",
+    "text7": "  ,  suma",
+    "text8": "Chitanta repetare examen de licenta(unde este cazul): data  ",
+    "text9": ",  suma",
+    "text10": "Tema lucrarii de licenta:",
+    "text11": "Coordonator stiintific:",
+    "text12": "Data,                         ",
+    "text13": "                                        Semnatura absolvent,",
+    "final": "Nr.telefon la care poate fi contactat studentul:"
   }
 }
