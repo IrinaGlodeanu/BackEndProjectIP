@@ -182,10 +182,4 @@ public class WithdrawalDocumentRequestServiceImpl implements WithdrawalDocumentR
         PdfUtility.finalizeDocument(document);
 
     }
-
-    public static void main(String[] args) throws IOException, DocumentException {
-        WithdrawalDocumentRequestServiceImpl ceva = new WithdrawalDocumentRequestServiceImpl();
-        ceva.createPdf();
-    }
-
 }
