@@ -14,5 +14,19 @@
     "text3": ", an universitar ",
     "text4": "vă rog să-mi aprobați eliberarea situației școlare pentru studiile de licență/master. Solicit acest lucru din motive personale.Anexez prezenței chitanța emisă de B.R.D.",
     "final": "Domnului Decan al Facultății de Informatică, Iași"
+  },
+
+  "transport_request":{
+    "introduction": "Adeverinta",
+    "text1": "Prin prezenta se adevereste ca studentul/a ",
+    "text2": ", legitimat cu carte de identitate, seria si numarul ",
+    "text3": " inmatriculat la cursuri cu frecventa, buget, anul ",
+    "text4": ", ciclul de licenta/master, la Facultatea de Informatica si i se acorda dreptul de eliberare a unui abonament CTP de tip studentesc.",
+    "text5": "Prezenta adeverinta este valabila 7 zile lucratoare de la data eliberarii, insotita de act de identitate.",
+    "final1": "DECAN,                                           SECRETAR SEF,",
+    "final2": "Conf. Univ. Dr. Adrian IFTENE			Lacramioara-Nicoleta LEONTE",
+    "subsol1": "Prezenta adeverinta (originalul) poate fi utilizata o singura data, doar de catre titular si se retine la toneta CTP odata cu eliberarea abonamentului studentesc. Duplicatele nu sunt valabile.",
+    "subsol2": "Eliberarea abonamentului studentesc este posibila doar cu prezentarea actului de identitate valabil,inscris in adeverinta.",
+    "subsol3": "Falsificarea acestor adeverinte se pedepseste coform legilor si regulamentelor interne."
   }
 }
