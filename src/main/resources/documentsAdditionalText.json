@@ -14,5 +14,18 @@
     "text3": ", an universitar ",
     "text4": "vă rog să-mi aprobați eliberarea situației școlare pentru studiile de licență/master. Solicit acest lucru din motive personale.Anexez prezenței chitanța emisă de B.R.D.",
     "final": "Domnului Decan al Facultății de Informatică, Iași"
+  },
+
+  "interruption_request":{
+    "introduction": "Domnule Decan,",
+    "text1": "Subsemnatul/a ",
+    "text2": ", student/studenta in anul ",
+    "text3": ", an universitar ",
+    "text4": "va rog sa-mi aprobati intreruperea studiilor de licența/master, incepand cu semestrul ",
+    "text5": "al anului universitar ",
+    "text6": " pentru ",
+    "text7": "semestre.",
+    "text8": "Am luat la cunoștința faptul ca la reluarea studiilor voi fi inmatriculat/a in regim cu taxa si ca trebuie sa indeplinesc cerintele planului de invaţamant al promotiei cu care voi termina studiile.",
+    "final": "Domnului Decan al Facultatii de Informatica, Iasi"
   }
 }
