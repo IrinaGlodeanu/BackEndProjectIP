@@ -16,9 +16,6 @@ import com.itextpdf.text.Document;
 import com.itextpdf.text.DocumentException;
 import com.itextpdf.text.Paragraph;
 
-/**
- * Created by Cami on 2017-05-11.
- */
 @Service
 public class WithdrawalDocumentRequestServiceImpl implements WithdrawalDocumentRequestService, Composable{
     @Autowired
@@ -56,11 +53,9 @@ public class WithdrawalDocumentRequestServiceImpl implements WithdrawalDocumentR
         String jsonString;
         Paragraph emptyLines;
 
-
         jsonString = PdfUtility.initiliazeJson(br);
 
-
-        //prima parte
+        //first part of document
         JSONObject obj = new JSONObject(jsonString);
         jsonKeys.add(obj.getJSONObject("withdrawal_document_request").getString("introduction"));
         jsonKeys.add(obj.getJSONObject("withdrawal_document_request").getString("text1"));
@@ -81,9 +76,9 @@ public class WithdrawalDocumentRequestServiceImpl implements WithdrawalDocumentR
         emptyLines = PdfUtility.addEmptyLine(5);
         document.add(emptyLines);
 
-        String s = PdfUtility.concatenateString(jsonKeys.get(1), jsonKeys.get(2),
+        String text = PdfUtility.concatenateString(jsonKeys.get(1), jsonKeys.get(2),
                 jsonKeys.get(3), jsonKeys.get(4), jsonKeys.get(5), jsonKeys.get(6), jsonKeys.get(7));
-        Paragraph paragraph = new Paragraph(s, PdfUtility.catFont);
+        Paragraph paragraph = new Paragraph(text, PdfUtility.catFont);
 
         document.add(paragraph);
 
@@ -95,15 +90,15 @@ public class WithdrawalDocumentRequestServiceImpl implements WithdrawalDocumentR
         PdfUtility.addEmptyLine(10);
         document.add(emptyLines);
 
-        //declaratie
+        //second part of document
         jsonKeys.add(obj.getJSONObject("withdrawal_document_request").getString("introduction2"));
-        jsonKeys.add(obj.getJSONObject("withdrawal_document_request").getString("text21"));
-        jsonKeys.add(obj.getJSONObject("withdrawal_document_request").getString("text22"));
-        jsonKeys.add(obj.getJSONObject("withdrawal_document_request").getString("text23"));
-        jsonKeys.add(obj.getJSONObject("withdrawal_document_request").getString("text24"));
-        jsonKeys.add(obj.getJSONObject("withdrawal_document_request").getString("text25"));
-        jsonKeys.add(obj.getJSONObject("withdrawal_document_request").getString("text26"));
-        jsonKeys.add(obj.getJSONObject("withdrawal_document_request").getString("final2"));
+        jsonKeys.add(obj.getJSONObject("withdrawal_document_request").getString("text10"));
+        jsonKeys.add(obj.getJSONObject("withdrawal_document_request").getString("text11"));
+        jsonKeys.add(obj.getJSONObject("withdrawal_document_request").getString("text12"));
+        jsonKeys.add(obj.getJSONObject("withdrawal_document_request").getString("text13"));
+        jsonKeys.add(obj.getJSONObject("withdrawal_document_request").getString("text14"));
+        jsonKeys.add(obj.getJSONObject("withdrawal_document_request").getString("text15"));
+        jsonKeys.add(obj.getJSONObject("withdrawal_document_request").getString("fina16"));
 
 
 
@@ -113,11 +108,11 @@ public class WithdrawalDocumentRequestServiceImpl implements WithdrawalDocumentR
         emptyLines = PdfUtility.addEmptyLine(5);
         document.add(emptyLines);
 
-        String s2 = PdfUtility.concatenateString(jsonKeys.get(10), jsonKeys.get(11),
+        text = PdfUtility.concatenateString(jsonKeys.get(10), jsonKeys.get(11),
                 jsonKeys.get(12), jsonKeys.get(13), jsonKeys.get(14), jsonKeys.get(15));
-        Paragraph paragraph2 = new Paragraph(s2, PdfUtility.catFont);
+        paragraph = new Paragraph(text, PdfUtility.catFont);
 
-        document.add(paragraph2);
+        document.add(paragraph);
 
         PdfUtility.addEmptyLine(5);
         document.add(emptyLines);
@@ -127,57 +122,58 @@ public class WithdrawalDocumentRequestServiceImpl implements WithdrawalDocumentR
         document.add(emptyLines);
 
 
-        //stampile
-        jsonKeys.add(obj.getJSONObject("withdrawal_document_request").getString("text31"));
-        jsonKeys.add(obj.getJSONObject("withdrawal_document_request").getString("text32"));
-        jsonKeys.add(obj.getJSONObject("withdrawal_document_request").getString("text33"));
-        jsonKeys.add(obj.getJSONObject("withdrawal_document_request").getString("text34"));
-        jsonKeys.add(obj.getJSONObject("withdrawal_document_request").getString("text35"));
-        jsonKeys.add(obj.getJSONObject("withdrawal_document_request").getString("text36"));
-        jsonKeys.add(obj.getJSONObject("withdrawal_document_request").getString("text37"));
+        //third part of document
+        jsonKeys.add(obj.getJSONObject("withdrawal_document_request").getString("text17"));
+        jsonKeys.add(obj.getJSONObject("withdrawal_document_request").getString("text18"));
+        jsonKeys.add(obj.getJSONObject("withdrawal_document_request").getString("text19"));
+        jsonKeys.add(obj.getJSONObject("withdrawal_document_request").getString("text20"));
+        jsonKeys.add(obj.getJSONObject("withdrawal_document_request").getString("text21"));
+        jsonKeys.add(obj.getJSONObject("withdrawal_document_request").getString("text22"));
+        jsonKeys.add(obj.getJSONObject("withdrawal_document_request").getString("text23"));
 
 
         emptyLines = PdfUtility.addEmptyLine(3);
         document.add(emptyLines);
-        String s31 =jsonKeys.get(17);
-        Paragraph paragraph31 = new Paragraph(s31, PdfUtility.catFont);
-        document.add(paragraph31);
+        text =jsonKeys.get(17);
+        paragraph = new Paragraph(text, PdfUtility.catFont);
+        document.add(paragraph);
 
         emptyLines = PdfUtility.addEmptyLine(5);
         document.add(emptyLines);
-        String s32 =jsonKeys.get(18);
-        Paragraph paragraph32 = new Paragraph(s32, PdfUtility.catFont);
-        document.add(paragraph32);
+        text =jsonKeys.get(18);
+        paragraph = new Paragraph(text, PdfUtility.catFont);
+        document.add(paragraph);
 
         emptyLines = PdfUtility.addEmptyLine(5);
         document.add(emptyLines);
-        String s33 =jsonKeys.get(19);
-        Paragraph paragraph33 = new Paragraph(s33, PdfUtility.catFont);
-        document.add(paragraph33);
+        text =jsonKeys.get(19);
+        paragraph = new Paragraph(text, PdfUtility.catFont);
+        document.add(paragraph);
 
         emptyLines = PdfUtility.addEmptyLine(5);
         document.add(emptyLines);
-        String s34 =jsonKeys.get(20);
-        Paragraph paragraph34 = new Paragraph(s34, PdfUtility.catFont);
-        document.add(paragraph34);
+        text =jsonKeys.get(20);
+        paragraph = new Paragraph(text, PdfUtility.catFont);
+        document.add(paragraph);
 
         emptyLines = PdfUtility.addEmptyLine(5);
         document.add(emptyLines);
-        String s35 =jsonKeys.get(21);
-        Paragraph paragraph35 = new Paragraph(s35, PdfUtility.catFont);
-        document.add(paragraph35);
+        text =jsonKeys.get(21);
+        paragraph = new Paragraph(text, PdfUtility.catFont);
+        document.add(paragraph);
 
         emptyLines = PdfUtility.addEmptyLine(5);
         document.add(emptyLines);
-        String s36 =jsonKeys.get(22);
-        Paragraph paragraph36 = new Paragraph(s36, PdfUtility.catFont);
-        document.add(paragraph36);
+        text =jsonKeys.get(22);
+        paragraph = new Paragraph(text, PdfUtility.catFont);
+        document.add(paragraph);
 
         emptyLines = PdfUtility.addEmptyLine(5);
         document.add(emptyLines);
-        String s37 =jsonKeys.get(23);
-        Paragraph paragraph37 = new Paragraph(s37, PdfUtility.catFont);
-        document.add(paragraph37);
+        text =jsonKeys.get(23);
+        paragraph = new Paragraph(text, PdfUtility.catFont);
+        document.add(paragraph);
+
 
         PdfUtility.finalizeDocument(document);
 
