@@ -26,6 +26,11 @@ public class LicenseRegistrationFormServiceImpl implements LicenseRegistrationFo
     @Autowired
     private LicenseRegistrationFormRepository licenseRegFromRepository;
 
+    public static void main(String args[]) throws IOException, DocumentException {
+        LicenseRegistrationFormServiceImpl licenseRegistrationFormService = new LicenseRegistrationFormServiceImpl();
+        licenseRegistrationFormService.createPdf();
+    }
+
     @Override
     public LicenseRegistrationForm save(LicenseRegistrationForm entity) {
         return this.licenseRegFromRepository.save(entity);
@@ -92,16 +97,16 @@ public class LicenseRegistrationFormServiceImpl implements LicenseRegistrationFo
          */
         Document document = PdfUtility.initializeDocument();
 
-        String r = PdfUtility.concatenateString(jsonKeys.get(0), jsonKeys.get(1));
-        Paragraph paragraph = new Paragraph(r, PdfUtility.catFont);
+        String paragraphElem = PdfUtility.concatenateString(jsonKeys.get(0), jsonKeys.get(1));
+        Paragraph paragraph = new Paragraph(paragraphElem, PdfUtility.catFont);
         document.add(paragraph);
 
-        r = PdfUtility.concatenateString(jsonKeys.get(2));
-        paragraph = new Paragraph(r, PdfUtility.catFont);
+        paragraphElem = PdfUtility.concatenateString(jsonKeys.get(2));
+        paragraph = new Paragraph(paragraphElem, PdfUtility.catFont);
         document.add(paragraph);
 
-        r = PdfUtility.concatenateString(jsonKeys.get(3));
-        paragraph = new Paragraph(r, PdfUtility.catFont);
+        paragraphElem = PdfUtility.concatenateString(jsonKeys.get(3));
+        paragraph = new Paragraph(paragraphElem, PdfUtility.catFont);
         document.add(paragraph);
 
         emptyLines = PdfUtility.addEmptyLine(3);
@@ -112,43 +117,43 @@ public class LicenseRegistrationFormServiceImpl implements LicenseRegistrationFo
         emptyLines = PdfUtility.addEmptyLine(2);
         document.add(emptyLines);
 
-        r = PdfUtility.concatenateString(jsonKeys.get(5));
-        paragraph = new Paragraph(r, PdfUtility.catFont);
+        paragraphElem = PdfUtility.concatenateString(jsonKeys.get(5));
+        paragraph = new Paragraph(paragraphElem, PdfUtility.catFont);
         document.add(paragraph);
 
-        r = PdfUtility.concatenateString(jsonKeys.get(6));
-        paragraph = new Paragraph(r, PdfUtility.catFont);
+        paragraphElem = PdfUtility.concatenateString(jsonKeys.get(6));
+        paragraph = new Paragraph(paragraphElem, PdfUtility.catFont);
         document.add(paragraph);
 
-        r = PdfUtility.concatenateString(jsonKeys.get(7));
-        paragraph = new Paragraph(r, PdfUtility.catFont);
+        paragraphElem = PdfUtility.concatenateString(jsonKeys.get(7));
+        paragraph = new Paragraph(paragraphElem, PdfUtility.catFont);
         document.add(paragraph);
 
-        r = PdfUtility.concatenateString(jsonKeys.get(8), jsonKeys.get(9));
-        paragraph = new Paragraph(r, PdfUtility.catFont);
+        paragraphElem = PdfUtility.concatenateString(jsonKeys.get(8), jsonKeys.get(9));
+        paragraph = new Paragraph(paragraphElem, PdfUtility.catFont);
         document.add(paragraph);
 
-        r = PdfUtility.concatenateString(jsonKeys.get(10), jsonKeys.get(11));
-        paragraph = new Paragraph(r, PdfUtility.catFont);
+        paragraphElem = PdfUtility.concatenateString(jsonKeys.get(10), jsonKeys.get(11));
+        paragraph = new Paragraph(paragraphElem, PdfUtility.catFont);
         document.add(paragraph);
 
-        r = PdfUtility.concatenateString(jsonKeys.get(12), jsonKeys.get(13));
-        paragraph = new Paragraph(r, PdfUtility.catFont);
+        paragraphElem = PdfUtility.concatenateString(jsonKeys.get(12), jsonKeys.get(13));
+        paragraph = new Paragraph(paragraphElem, PdfUtility.catFont);
         document.add(paragraph);
 
         PdfUtility.addEmptyLine(7);
         document.add(emptyLines);
         document.add(emptyLines);
 
-        r = PdfUtility.concatenateString(jsonKeys.get(14));
-        paragraph = new Paragraph(r, PdfUtility.catFont);
+        paragraphElem = PdfUtility.concatenateString(jsonKeys.get(14));
+        paragraph = new Paragraph(paragraphElem, PdfUtility.catFont);
         document.add(paragraph);
 
         PdfUtility.addEmptyLine(3);
         document.add(emptyLines);
 
-        r = PdfUtility.concatenateString(jsonKeys.get(15));
-        paragraph = new Paragraph(r, PdfUtility.catFont);
+        paragraphElem = PdfUtility.concatenateString(jsonKeys.get(15));
+        paragraph = new Paragraph(paragraphElem, PdfUtility.catFont);
         document.add(paragraph);
 
         PdfUtility.addEmptyLine(7);
@@ -156,8 +161,8 @@ public class LicenseRegistrationFormServiceImpl implements LicenseRegistrationFo
         document.add(emptyLines);
         document.add(emptyLines);
 
-        r = PdfUtility.concatenateString(jsonKeys.get(16), jsonKeys.get(17));
-        paragraph = new Paragraph(r, PdfUtility.catFont);
+        paragraphElem = PdfUtility.concatenateString(jsonKeys.get(16), jsonKeys.get(17));
+        paragraph = new Paragraph(paragraphElem, PdfUtility.catFont);
         document.add(paragraph);
 
         PdfUtility.addEmptyLine(7);
@@ -169,5 +174,4 @@ public class LicenseRegistrationFormServiceImpl implements LicenseRegistrationFo
         PdfUtility.finalizeDocument(document);
 
     }
-
 }
