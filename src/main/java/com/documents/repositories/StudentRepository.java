@@ -1,8 +1,9 @@
 package com.documents.repositories;
 
-import com.documents.models.Student;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
+
+import com.documents.models.Student;
 
 
 /**
@@ -11,4 +12,15 @@ import org.springframework.stereotype.Repository;
  */
 @Repository
 public interface StudentRepository extends CrudRepository<Student, Long> {
+
+    /**
+     * Query that search the webmail and the password(for login)
+     *
+     * @param webmail
+     * @param password
+     *
+     * @return Student Object
+     */
+    Student findByWebmailAndPassword(String webmail, String password);
+
 }

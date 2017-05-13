@@ -1,17 +1,14 @@
 package com.documents.services;
 
-import com.documents.models.Student;
-import com.documents.repositories.StudentRepository;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * @author Elena Hardon
- * @date 4/27/17.
- */
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.documents.models.Student;
+import com.documents.repositories.StudentRepository;
+
 @Service
 public class StudentServiceImpl implements StudentService {
 
@@ -40,5 +37,11 @@ public class StudentServiceImpl implements StudentService {
     @Override
     public void delete(Long id) {
         this.studentRepository.delete(id);
+    }
+
+
+    @Override
+    public Student getStudent(String webmail, String password) {
+        return studentRepository.findByWebmailAndPassword(webmail, password);
     }
 }

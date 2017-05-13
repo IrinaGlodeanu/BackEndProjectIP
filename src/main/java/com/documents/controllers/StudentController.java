@@ -14,10 +14,6 @@ import org.springframework.web.bind.annotation.RestController;
 import com.documents.models.Student;
 import com.documents.services.StudentService;
 
-/**
- * @author Elena Hardon
- * @date 5/2/17.
- */
 @RestController
 @RequestMapping(value = "/student")
 public class StudentController {
@@ -89,8 +85,9 @@ public class StudentController {
      * Update a student data(change his information in database)
      *
      * @param student - a new Student Object
-     * @param id - the id of the student where you want to insert new data
-     *  You save into the database the changed student object
+     * @param id      - the id of the student where you want to insert new data
+     *                You save into the database the changed student object
+     *
      * @return return a status if was successfully updated
      */
 
@@ -101,5 +98,19 @@ public class StudentController {
         }
         Student newStudent = studentService.save(student);
         return new ResponseEntity<Student>(newStudent, HttpStatus.OK);
+    }
+
+    /**
+     * Get a student object if we find the webmail and password in the database(Login purpose)
+     *
+     * @param webmail
+     * @param password
+     *
+     * @return Student Object
+     */
+    @RequestMapping(value = "/login/{webmail}/{password}", method = RequestMethod.GET)
+    public ResponseEntity<Student> getStudentForLogin(@PathVariable String webmail, @PathVariable Long password) {
+        Student student = studentService.getStudent(webmail, password.toString());
+        return new ResponseEntity<Student>(student, HttpStatus.OK);
     }
 }
