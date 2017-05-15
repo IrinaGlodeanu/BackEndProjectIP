@@ -6,6 +6,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -14,7 +15,6 @@ import com.documents.repositories.InterruptionRequestDocumentRepository;
 import com.itextpdf.text.Document;
 import com.itextpdf.text.DocumentException;
 import com.itextpdf.text.Paragraph;
-import org.json.JSONObject;
 
 /**
  * Created by Simona on 11-May-17.
@@ -53,11 +53,6 @@ public class InterruptionRequestDocumentServiceImpl implements InterruptionReque
     @Override
     public void createPdf() throws IOException, DocumentException {
 
-
-        /**
-         * We insert here the path where we can find the JSON
-         */
-
         BufferedReader br = new BufferedReader(new FileReader("src\\main\\resources\\documentsAdditionalText.json"));
         List<String> jsonKeys = new ArrayList<>();
         String jsonString;
@@ -80,9 +75,7 @@ public class InterruptionRequestDocumentServiceImpl implements InterruptionReque
         jsonKeys.add(obj.getJSONObject("interruption_request").getString("final"));
 
 
-        /**
-         * Generate the document with the content extracted from Json
-         */
+        // Generate the document with the content extracted from Json
         Document document = PdfUtility.initializeDocument();
         PdfUtility.addTitle(document, jsonKeys.get(0));
 
@@ -90,16 +83,16 @@ public class InterruptionRequestDocumentServiceImpl implements InterruptionReque
         emptyLines = PdfUtility.addEmptyLine(4);
         document.add(emptyLines);
 
-        String s1 = PdfUtility.concatenateString(jsonKeys.get(1), jsonKeys.get(2),
+        String firstStringParagraph = PdfUtility.concatenateString(jsonKeys.get(1), jsonKeys.get(2),
                 jsonKeys.get(3), jsonKeys.get(4),  jsonKeys.get(5),  jsonKeys.get(6), jsonKeys.get(7));
-        Paragraph paragraph1 = new Paragraph(s1, PdfUtility.catFont);
+        Paragraph firstParagraph = new Paragraph(firstStringParagraph, PdfUtility.catFont);
 
-        document.add(paragraph1);
+        document.add(firstParagraph);
 
-        String s2 = PdfUtility.concatenateString(jsonKeys.get(8));
-        Paragraph paragraph2 = new Paragraph(s2, PdfUtility.catFont);
+        String secondStringParagraph = PdfUtility.concatenateString(jsonKeys.get(8));
+        Paragraph secondParagraph = new Paragraph(secondStringParagraph, PdfUtility.catFont);
 
-        document.add(paragraph2);
+        document.add(secondParagraph);
 
         PdfUtility.addEmptyLine(11);
         document.add(emptyLines);
