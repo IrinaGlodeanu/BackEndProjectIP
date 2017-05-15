@@ -6,19 +6,16 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.itextpdf.text.Document;
-import com.itextpdf.text.DocumentException;
-import com.itextpdf.text.Paragraph;
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.documents.models.TransportRequestDocument;
 import com.documents.repositories.TransportRequestDocumentRepository;
+import com.itextpdf.text.Document;
+import com.itextpdf.text.DocumentException;
+import com.itextpdf.text.Paragraph;
 
-/**
- * Created by Ecaterina Mihaela on 13-May-17.
- */
 @Service
 public class TransportRequestDocumentServiceImpl implements TransportRequestDocumentService, Composable {
 
@@ -89,50 +86,52 @@ public class TransportRequestDocumentServiceImpl implements TransportRequestDocu
 
         emptyLines = PdfUtility.addEmptyLine(2);
         document.add(emptyLines);
-        String s = PdfUtility.concatenateString(jsonKeys.get(1), jsonKeys.get(2),
+        String firstStringParagraph = PdfUtility.concatenateString(jsonKeys.get(1), jsonKeys.get(2),
                 jsonKeys.get(3), jsonKeys.get(4));
-        Paragraph paragraph = new Paragraph(s, PdfUtility.catFont);
-        document.add(paragraph);
+        Paragraph firstParagraph = new Paragraph(firstStringParagraph, PdfUtility.catFont);
+        document.add(firstParagraph);
 
         emptyLines = PdfUtility.addEmptyLine(1);
         document.add(emptyLines);
-        String s1 = PdfUtility.concatenateString(jsonKeys.get(5));
-        Paragraph paragraph1 = new Paragraph(s1, PdfUtility.catFont);
-        document.add(paragraph1);
+        String secondStringParagraph = PdfUtility.concatenateString(jsonKeys.get(5));
+        Paragraph secondParagraph = new Paragraph(secondStringParagraph, PdfUtility.catFont);
+        document.add(secondParagraph);
 
         emptyLines = PdfUtility.addEmptyLine(2);
         document.add(emptyLines);
-        String s2 = PdfUtility.concatenateString(jsonKeys.get(6));
-        Paragraph paragraph2 = new Paragraph(s2, PdfUtility.catFont);
-        document.add(paragraph2);
+        String thirdStringParagraph = PdfUtility.concatenateString(jsonKeys.get(6));
+        Paragraph thirdParagraph = new Paragraph(thirdStringParagraph, PdfUtility.catFont);
+        document.add(thirdParagraph);
 
         emptyLines = PdfUtility.addEmptyLine(1);
         document.add(emptyLines);
-        String s3 = PdfUtility.concatenateString(jsonKeys.get(7));
-        Paragraph paragraph3 = new Paragraph(s3, PdfUtility.catFont);
-        document.add(paragraph3);
+        String forthStringParagraph = PdfUtility.concatenateString(jsonKeys.get(7));
+        Paragraph forthParagraph = new Paragraph(forthStringParagraph, PdfUtility.catFont);
+        document.add(forthParagraph);
 
         emptyLines = PdfUtility.addEmptyLine(8);
         document.add(emptyLines);
-        String s4 = PdfUtility.concatenateString(jsonKeys.get(8));
-        Paragraph paragraph4 = new Paragraph(s4, PdfUtility.catFont);
-        document.add(paragraph4);
+        String fifthStringParagraph = PdfUtility.concatenateString(jsonKeys.get(8));
+        Paragraph fifthParagraph = new Paragraph(fifthStringParagraph, PdfUtility.catFont);
+        document.add(fifthParagraph);
 
         emptyLines = PdfUtility.addEmptyLine(1);
         document.add(emptyLines);
-        String s5 = PdfUtility.concatenateString(jsonKeys.get(9));
-        Paragraph paragraph5 = new Paragraph(s5, PdfUtility.catFont);
-        document.add(paragraph5);
+        String sixthStringParagraph = PdfUtility.concatenateString(jsonKeys.get(9));
+        Paragraph sixthParagraph = new Paragraph(sixthStringParagraph, PdfUtility.catFont);
+        document.add(sixthParagraph);
 
         emptyLines = PdfUtility.addEmptyLine(1);
         document.add(emptyLines);
-        String s6 = PdfUtility.concatenateString(jsonKeys.get(10));
-        Paragraph paragraph6 = new Paragraph(s6, PdfUtility.catFont);
-        document.add(paragraph6);
+        String seventhStringParagraph = PdfUtility.concatenateString(jsonKeys.get(10));
+        Paragraph seventhParagraph = new Paragraph(seventhStringParagraph, PdfUtility.catFont);
+        document.add(seventhParagraph);
 
 
         PdfUtility.finalizeDocument(document);
 
 
     }
+
+
 }
