@@ -26,11 +26,6 @@ public class LicenseRegistrationFormServiceImpl implements LicenseRegistrationFo
     @Autowired
     private LicenseRegistrationFormRepository licenseRegFromRepository;
 
-    public static void main(String args[]) throws IOException, DocumentException {
-        LicenseRegistrationFormServiceImpl licenseRegistrationFormService = new LicenseRegistrationFormServiceImpl();
-        licenseRegistrationFormService.createPdf();
-    }
-
     @Override
     public LicenseRegistrationForm save(LicenseRegistrationForm entity) {
         return this.licenseRegFromRepository.save(entity);
