@@ -15,6 +15,7 @@
     "text4": "vă rog să-mi aprobați eliberarea situației școlare pentru studiile de licență/master. Solicit acest lucru din motive personale.Anexez prezenței chitanța emisă de B.R.D.",
     "final": "Domnului Decan al Facultății de Informatică, Iași"
   },
+  
   "withdrawal_document_request": {
     "introduction": "Domnule Decan,",
     "text1": "Subsemnatul/a ",
@@ -42,5 +43,42 @@
     "text21": "SERVICIUL PENTRU PROBLEME SOCIAL-STUDENTESTI (Caminul 12, Codrescu)",
     "text22": "COMPARTIMENTUL BURSE (Caminul 12, Codrescu)",
     "text23": "BIBLIOTECA CENTRALA UNIVERSITARA “M.EMINESCU"
-  }
+  },
+
+  "interruption_request":{
+    "introduction": "Domnule Decan,",
+    "text1": "Subsemnatul/a ",
+    "text2": ", student/studenta in anul ",
+    "text3": ", an universitar ",
+    "text4": "va rog sa-mi aprobati intreruperea studiilor de licența/master, incepand cu semestrul ",
+    "text5": "al anului universitar ",
+    "text6": " pentru ",
+    "text7": "semestre.",
+    "text8": "Am luat la cunoștința faptul ca la reluarea studiilor voi fi inmatriculat/a in regim cu taxa si ca trebuie sa indeplinesc cerintele planului de invaţamant al promotiei cu care voi termina studiile.",
+    "final": "Domnului Decan al Facultatii de Informatica, Iasi"
+  },
+  
+  
+  "license_register_request": {
+    "head1": "FACULTATEA DE INFORMATICA                        SESIUNEA ",
+    "head2": "EXAMEN DE LICENTA",
+    "head3": "Specializarea:Informatica",
+    "head4": "Curs:Zi",
+    "introduction": "FISA DE INSCRIERE LA EXAMENUL DE LICENTA",
+    "text1": "Numele si prenumele: ",
+    "text2": "Nr. matricol: ",
+    "text3": "Anul absolvirii: ",
+    "text4": "Durata studiilor:         ",
+    "text5": "ani ",
+    "text6": "Chitanta certificat competenta lingvistica:          data ",
+    "text7": "  ,  suma",
+    "text8": "Chitanta repetare examen de licenta(unde este cazul): data  ",
+    "text9": ",  suma",
+    "text10": "Tema lucrarii de licenta:",
+    "text11": "Coordonator stiintific:",
+    "text12": "Data,                         ",
+    "text13": "                                        Semnatura absolvent,",
+    "final": "Nr.telefon la care poate fi contactat studentul:"
+   }
+
 }
