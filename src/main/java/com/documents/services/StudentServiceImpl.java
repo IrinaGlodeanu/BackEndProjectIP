@@ -6,6 +6,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.documents.models.LoginData;
 import com.documents.models.Student;
 import com.documents.repositories.StudentRepository;
 
@@ -41,7 +42,7 @@ public class StudentServiceImpl implements StudentService {
 
 
     @Override
-    public Student getStudent(String webmail, String password) {
-        return studentRepository.findByWebmailAndPassword(webmail, password);
+    public Student getStudent(LoginData student) {
+        return studentRepository.findByWebmailAndPassword(student.getEmail(), student.getPassword());
     }
 }
