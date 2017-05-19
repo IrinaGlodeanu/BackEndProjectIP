@@ -6,6 +6,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.documents.models.LoginData;
 import com.documents.models.Secretary;
 import com.documents.repositories.SecretaryRepository;
 
@@ -43,4 +44,8 @@ public class SecretaryServiceImpl implements SecretaryService {
     }
 
 
+    @Override
+    public Secretary getSecretary(LoginData secretary) {
+        return secretaryRepository.findByWebmailAndPassword(secretary.getEmail(), secretary.getPassword());
+    }
 }
