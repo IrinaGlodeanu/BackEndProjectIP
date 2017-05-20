@@ -14,10 +14,6 @@ import com.documents.models.LoginData;
 import com.documents.models.Secretary;
 import com.documents.services.SecretaryService;
 
-/**
- * @author Georgiana&Ecaterina 
- * @date 07.05.2017.
- */
 @RestController
 @CrossOrigin("*")
 @RequestMapping(value = "/secretary")
@@ -88,7 +84,7 @@ public class SecretaryController {
 
     /**
      * Get a Secretary object if we find the webmail and password in the database(Login purpose)
-     *
+     * We call the function getSecretary from SecretaryServiceImpl
      * @return Secretary Object
      */
     @RequestMapping(value = "/login", method = RequestMethod.POST)

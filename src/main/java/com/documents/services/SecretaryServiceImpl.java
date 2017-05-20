@@ -44,7 +44,14 @@ public class SecretaryServiceImpl implements SecretaryService {
     }
 
 
-    @Override
+    /**
+     * Calls the query that will get the Secretary Object
+     *
+     * @param secretary
+     *
+     * @return Secretary
+     */
+
     public Secretary getSecretary(LoginData secretary) {
         return secretaryRepository.findByWebmailAndPassword(secretary.getEmail(), secretary.getPassword());
     }
