@@ -4,11 +4,13 @@ import javax.persistence.Column;
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.Table;
 
 /**
  * Created by AlenaHa on 10.05.2017.
  */
 @Entity
+@Table(name = "Diploma")
 @DiscriminatorValue("Cerere Diploma")
 public class DiplomaDocumentRequest extends Document {
     @Id
