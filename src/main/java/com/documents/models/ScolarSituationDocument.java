@@ -4,9 +4,11 @@ import javax.persistence.Column;
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.Table;
 
 
 @Entity
+@Table(name = "ScolarSituation")
 @DiscriminatorValue("Cerere Situatie Scolara")
 public class ScolarSituationDocument extends Document {
     @Id

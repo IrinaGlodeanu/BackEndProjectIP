@@ -99,7 +99,5 @@ public class InterruptionRequestDocumentServiceImpl implements InterruptionReque
         PdfUtility.addFooter(document, jsonKeys.get(9));
 
         PdfUtility.finalizeDocument(document);
-
     }
-
 }

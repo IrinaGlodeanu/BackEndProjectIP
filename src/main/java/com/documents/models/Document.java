@@ -16,7 +16,7 @@ import javax.persistence.InheritanceType;
  * name of the Document.
  */
 @Entity
-@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
+@Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
 @DiscriminatorColumn(name = "document_type", discriminatorType = DiscriminatorType.STRING)
 public class Document {
 

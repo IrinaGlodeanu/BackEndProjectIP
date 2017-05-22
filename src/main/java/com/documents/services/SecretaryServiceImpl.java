@@ -6,6 +6,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.documents.models.LoginData;
 import com.documents.models.Secretary;
 import com.documents.repositories.SecretaryRepository;
 
@@ -43,4 +44,15 @@ public class SecretaryServiceImpl implements SecretaryService {
     }
 
 
+    /**
+     * Calls the query that will get the Secretary Object
+     *
+     * @param secretary
+     *
+     * @return Secretary
+     */
+
+    public Secretary getSecretary(LoginData secretary) {
+        return secretaryRepository.findByWebmailAndPassword(secretary.getEmail(), secretary.getPassword());
+    }
 }

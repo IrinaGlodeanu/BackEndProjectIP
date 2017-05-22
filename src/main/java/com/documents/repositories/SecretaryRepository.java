@@ -1,8 +1,9 @@
 package com.documents.repositories;
 
-import com.documents.models.Secretary;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
+
+import com.documents.models.Secretary;
 
 /**
  * @author Elena Hardon
@@ -10,4 +11,14 @@ import org.springframework.stereotype.Repository;
  */
 @Repository
 public interface SecretaryRepository extends CrudRepository<Secretary, Long> {
+
+    /**
+     * Query that search the webmail and the password(for login)
+     *
+     * @param webmail
+     * @param password
+     *
+     * @return Secretary Object
+     */
+    Secretary findByWebmailAndPassword(String webmail, String password);
 }

@@ -4,11 +4,13 @@ import javax.persistence.Column;
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.Table;
 
 /**
  * Created by Cami on 2017-05-11.
  */
 @Entity
+@Table(name = "Withdrawal")
 @DiscriminatorValue("Cerere retragere")
 public class WithdrawalDocumentRequest extends Document{
     @Id

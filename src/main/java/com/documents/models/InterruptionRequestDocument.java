@@ -4,11 +4,13 @@ import javax.persistence.Column;
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.Table;
 
 /**
  * Created by Simona on 11-May-17.
  */
 @Entity
+@Table(name = "Interruption")
 @DiscriminatorValue("Cerere Intrerupere Studii")
 public class InterruptionRequestDocument extends Document {
     @Id

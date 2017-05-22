@@ -3,20 +3,19 @@ package com.documents.controllers;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.documents.models.LoginData;
 import com.documents.models.Secretary;
 import com.documents.services.SecretaryService;
 
-/**
- * @author Georgiana&Ecaterina 
- * @date 07.05.2017.
- */
 @RestController
+@CrossOrigin("*")
 @RequestMapping(value = "/secretary")
 public class SecretaryController {
 
@@ -82,4 +81,21 @@ public class SecretaryController {
         Secretary newSecretary = secretaryService.save(secretary);
         return new ResponseEntity<Secretary>(newSecretary, HttpStatus.OK);
     }
+
+    /**
+     * Get a Secretary object if we find the webmail and password in the database(Login purpose)
+     * We call the function getSecretary from SecretaryServiceImpl
+     * @return Secretary Object
+     */
+    @RequestMapping(value = "/login", method = RequestMethod.POST)
+    public ResponseEntity<Secretary> getIdForLogin(@RequestBody LoginData loginData) {
+        Secretary secretary = secretaryService.getSecretary(loginData);
+        if (!secretary.equals(null)) {
+            secretary.setPassword(null);
+            return new ResponseEntity<>(secretary, HttpStatus.OK);
+        }
+        return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
+    }
+
+
 }

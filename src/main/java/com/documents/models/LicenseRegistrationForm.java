@@ -4,12 +4,14 @@ import javax.persistence.Column;
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.Table;
 
 /**
  * Created by pc on 5/11/2017.
  */
 
 @Entity
+@Table(name = "License")
 @DiscriminatorValue("Formular inscriere licenta")
 public class LicenseRegistrationForm extends Document {
     @Id

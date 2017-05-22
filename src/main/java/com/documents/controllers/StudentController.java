@@ -5,17 +5,20 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.documents.models.LoginData;
 import com.documents.models.Student;
 import com.documents.services.StudentService;
 
 @RestController
 @RequestMapping(value = "/student")
+@CrossOrigin("*")
 public class StudentController {
 
     @Autowired
@@ -102,15 +105,16 @@ public class StudentController {
 
     /**
      * Get a student object if we find the webmail and password in the database(Login purpose)
-     *
-     * @param webmail
-     * @param password
-     *
      * @return Student Object
      */
-    @RequestMapping(value = "/login/{webmail}/{password}", method = RequestMethod.GET)
-    public ResponseEntity<Student> getStudentForLogin(@PathVariable String webmail, @PathVariable Long password) {
-        Student student = studentService.getStudent(webmail, password.toString());
-        return new ResponseEntity<Student>(student, HttpStatus.OK);
+    @RequestMapping(value = "/login", method = RequestMethod.POST)
+    public ResponseEntity<Student> getIdForLogin(@RequestBody LoginData loginData) {
+        Student student = studentService.getStudent(loginData);
+        if (!student.equals(null)) {
+            student.setPassword(null);
+            return new ResponseEntity<Student>(student, HttpStatus.OK);
+        }
+        return new ResponseEntity<Student>(HttpStatus.UNAUTHORIZED);
     }
+
 }
