@@ -47,7 +47,7 @@ public class ScolarSituationRequestServiceImpl implements ScolarSituationRequest
     }
 
     @Override
-    public void createPdf() throws IOException, DocumentException {
+    public void createPdf(List<String> infoList) throws IOException, DocumentException {
 
 
         /**

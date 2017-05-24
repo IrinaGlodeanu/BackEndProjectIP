@@ -6,16 +6,19 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.documents.models.Student;
 import com.documents.models.TransportRequestDocument;
 import com.documents.services.TransportRequestDocumentService;
 
 @RestController
+@CrossOrigin("*")
 @RequestMapping(value = "/transport")
 public class TransportRequestDocumentController {
 
@@ -67,4 +70,19 @@ public class TransportRequestDocumentController {
         TransportRequestDocument newStudent = transportRequestDocumentService.save(interruptionRequest);
         return new ResponseEntity<TransportRequestDocument>(newStudent, HttpStatus.OK);
     }
+
+    /**
+     * Get the list of students that have a Transport Request
+     * @return Student List
+     */
+    @RequestMapping(value = "/studentList",method = RequestMethod.GET)
+    public ResponseEntity<List<Student>> getStudentListForTransport(){
+        List<Student> list = this.transportRequestDocumentService.getStudentListForTransport();
+        if(list.isEmpty()){
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        }
+
+        return new ResponseEntity<>(list,HttpStatus.OK);
+    }
+
 }

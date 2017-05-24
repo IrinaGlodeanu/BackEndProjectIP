@@ -45,7 +45,7 @@ public class WithdrawalDocumentRequestServiceImpl implements WithdrawalDocumentR
     }
 
     @Override
-    public void createPdf() throws IOException, DocumentException {
+    public void createPdf(List<String> infoList) throws IOException, DocumentException {
 
 
         BufferedReader br = new BufferedReader(new FileReader("src\\main\\resources\\documentsAdditionalText.json"));

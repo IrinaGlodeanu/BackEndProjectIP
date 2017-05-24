@@ -1,9 +1,12 @@
 package com.documents.services;
 
+import java.util.List;
+
+import com.documents.models.Student;
 import com.documents.models.TransportRequestDocument;
 
-/**
- * Created by Simona on 12-May-17.
- */
+
 public interface TransportRequestDocumentService extends CrudService<TransportRequestDocument> {
+    List<Student> getStudentListForTransport();
 }
+

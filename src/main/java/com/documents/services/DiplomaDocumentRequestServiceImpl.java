@@ -46,7 +46,7 @@ public class DiplomaDocumentRequestServiceImpl implements DiplomaDocumentRequest
     }
 
     @Override
-    public void createPdf() throws IOException, DocumentException {
+    public void createPdf( List<String> infoList) throws IOException, DocumentException {
 
 
         /**

@@ -51,7 +51,7 @@ public class LicenseRegistrationFormServiceImpl implements LicenseRegistrationFo
     }
 
     @Override
-    public void createPdf() throws IOException, DocumentException {
+    public void createPdf(List<String> infoList) throws IOException, DocumentException {
         /**
          * We insert here the path where we can find the JSON
          */
