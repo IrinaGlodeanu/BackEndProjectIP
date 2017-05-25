@@ -47,7 +47,7 @@ public class ScolarSituationRequestServiceImpl implements ScolarSituationRequest
     }
 
     @Override
-    public void createPdf(List<String> infoList) throws IOException, DocumentException {
+    public void createPdf(List<String> infoList, String filePath) throws IOException, DocumentException {
 
 
         /**
@@ -73,7 +73,7 @@ public class ScolarSituationRequestServiceImpl implements ScolarSituationRequest
         /**
          * Generate the document with the content extracted from Json
          */
-        Document document = PdfUtility.initializeDocument();
+        Document document = PdfUtility.initializeDocument(filePath);
         PdfUtility.addTitle(document, jsonKeys.get(0));
 
 

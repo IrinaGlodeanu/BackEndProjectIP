@@ -11,6 +11,7 @@ import com.itextpdf.text.DocumentException;
 public interface TransportRequestDocumentService extends CrudService<TransportRequestDocument> {
 
     List<Student> getStudentListForTransport();
-    void createPdf(List<String> list) throws IOException, DocumentException;
+
+    void createPdf(List<String> list, String filePath) throws IOException, DocumentException;
 }
 

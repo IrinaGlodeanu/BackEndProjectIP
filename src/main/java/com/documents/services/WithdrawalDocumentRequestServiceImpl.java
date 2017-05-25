@@ -45,7 +45,7 @@ public class WithdrawalDocumentRequestServiceImpl implements WithdrawalDocumentR
     }
 
     @Override
-    public void createPdf(List<String> infoList) throws IOException, DocumentException {
+    public void createPdf(List<String> infoList, String filePath) throws IOException, DocumentException {
 
 
         BufferedReader br = new BufferedReader(new FileReader("src\\main\\resources\\documentsAdditionalText.json"));
@@ -67,8 +67,7 @@ public class WithdrawalDocumentRequestServiceImpl implements WithdrawalDocumentR
         jsonKeys.add(obj.getJSONObject("withdrawal_document_request").getString("final"));
 
 
-
-        Document document = PdfUtility.initializeDocument();
+        Document document = PdfUtility.initializeDocument(filePath);
         PdfUtility.addTitle(document, jsonKeys.get(0));
 
 

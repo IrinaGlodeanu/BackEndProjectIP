@@ -1,19 +1,20 @@
 package com.documents.services;
 
-import com.documents.models.LicenseRegistrationForm;
-import com.documents.repositories.LicenseRegistrationFormRepository;
-import com.itextpdf.text.Document;
-import com.itextpdf.text.DocumentException;
-import com.itextpdf.text.Paragraph;
-import org.json.JSONObject;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+
+import org.json.JSONObject;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.documents.models.LicenseRegistrationForm;
+import com.documents.repositories.LicenseRegistrationFormRepository;
+import com.itextpdf.text.Document;
+import com.itextpdf.text.DocumentException;
+import com.itextpdf.text.Paragraph;
 
 /**
  * Created by pc on 5/12/2017.
@@ -51,7 +52,7 @@ public class LicenseRegistrationFormServiceImpl implements LicenseRegistrationFo
     }
 
     @Override
-    public void createPdf(List<String> infoList) throws IOException, DocumentException {
+    public void createPdf(List<String> infoList, String filePath) throws IOException, DocumentException {
         /**
          * We insert here the path where we can find the JSON
          */
@@ -90,7 +91,7 @@ public class LicenseRegistrationFormServiceImpl implements LicenseRegistrationFo
         /**
          * Generate the document with the content extracted from Json
          */
-        Document document = PdfUtility.initializeDocument();
+        Document document = PdfUtility.initializeDocument(filePath);
 
         String paragraphElem = PdfUtility.concatenateString(jsonKeys.get(0), jsonKeys.get(1));
         Paragraph paragraph = new Paragraph(paragraphElem, PdfUtility.catFont);

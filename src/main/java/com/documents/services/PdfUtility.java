@@ -128,9 +128,9 @@ public class PdfUtility {
      * @throws FileNotFoundException
      * @throws DocumentException
      */
-    public static Document initializeDocument() throws FileNotFoundException, DocumentException {
+    public static Document initializeDocument(String filePath) throws FileNotFoundException, DocumentException {
         Document document = new Document();
-        PdfWriter.getInstance(document, new FileOutputStream(FILE));
+        PdfWriter.getInstance(document, new FileOutputStream(filePath));
         document.open();
         return document;
     }

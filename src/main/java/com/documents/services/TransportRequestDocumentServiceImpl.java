@@ -55,7 +55,7 @@ public class TransportRequestDocumentServiceImpl implements TransportRequestDocu
         this.transportRequestDocumentRepository.delete(id);
     }
 
-    public void createPdf(List<String> infoList ) throws IOException, DocumentException {
+    public void createPdf(List<String> infoList, String filePath) throws IOException, DocumentException {
 
         /**
          * We insert here the path where we can find the JSON
@@ -86,7 +86,7 @@ public class TransportRequestDocumentServiceImpl implements TransportRequestDocu
         /**
          * Generate the document with the content extracted from Json
          */
-        Document document = PdfUtility.initializeDocument();
+        Document document = PdfUtility.initializeDocument(filePath);
         PdfUtility.addTitle(document, jsonKeys.get(0));
 
 

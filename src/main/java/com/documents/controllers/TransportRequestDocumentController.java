@@ -1,10 +1,17 @@
 package com.documents.controllers;
 
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.servlet.http.HttpServletResponse;
+
+import org.apache.tomcat.util.http.fileupload.IOUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -28,10 +35,9 @@ public class TransportRequestDocumentController {
 
 
     @Autowired
-    private StudentService studentService;
-
-    @Autowired
     TransportRequestDocumentService transportRequestDocumentService;
+    @Autowired
+    private StudentService studentService;
 
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
     public ResponseEntity<TransportRequestDocument> getRequestbyId(@PathVariable Long id) {
@@ -93,8 +99,10 @@ public class TransportRequestDocumentController {
         return new ResponseEntity<>(list,HttpStatus.OK);
     }
 
-    @RequestMapping(value="/getPdf/{id}", method = RequestMethod.GET)
-    public  ResponseEntity<Student> getPdf(@PathVariable String id) throws IOException, DocumentException {
+    @RequestMapping(value = "/getPdf/{id}/transport.pdf", method = RequestMethod.GET)
+    public ResponseEntity<Student> getPdf(@PathVariable String id, HttpServletResponse response) throws IOException, DocumentException {
+        String fileName = "D:\\transportRequest.pdf";
+        ;
         Student student = this.studentService.findById(Long.parseLong(id));
 
         List<String> infoList = new ArrayList<String>();
@@ -103,8 +111,26 @@ public class TransportRequestDocumentController {
         /** NU OBSERVAM */
         infoList.add("2");
 
-        this.transportRequestDocumentService.createPdf(infoList);
+        this.transportRequestDocumentService.createPdf(infoList, fileName);
 
+        InputStream is = null;
+        File file = null;
+        try {
+            file = new File(fileName);
+            is = new FileInputStream(file);
+            IOUtils.copy(is, response.getOutputStream());
+            response.setContentType("application/pdf");
+            response.flushBuffer();
+        } catch (FileNotFoundException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        } catch (IOException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        } finally {
+            is.close();
+            file.delete();
+        }
 
         return new ResponseEntity<Student>(student,HttpStatus.OK);
 
