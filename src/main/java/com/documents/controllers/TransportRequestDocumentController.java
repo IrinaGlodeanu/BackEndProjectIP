@@ -100,9 +100,11 @@ public class TransportRequestDocumentController {
     }
 
     @RequestMapping(value = "/getPdf/{id}/transport.pdf", method = RequestMethod.GET)
-    public ResponseEntity<Student> getPdf(@PathVariable String id, HttpServletResponse response) throws IOException, DocumentException {
+    public javax.ws.rs.core.Response getPdf(@PathVariable String id, HttpServletResponse response) throws IOException, DocumentException {
+
+
         String fileName = "D:\\transportRequest.pdf";
-        ;
+
         Student student = this.studentService.findById(Long.parseLong(id));
 
         List<String> infoList = new ArrayList<String>();
@@ -131,9 +133,10 @@ public class TransportRequestDocumentController {
             is.close();
             file.delete();
         }
-
-        return new ResponseEntity<Student>(student,HttpStatus.OK);
-
+        javax.ws.rs.core.Response.ResponseBuilder responseBuilder = javax.ws.rs.core.Response.ok((Object) is);
+        responseBuilder.type("application/pdf");
+        responseBuilder.header("Content-Disposition", "filename=test.pdf");
+        return responseBuilder.build();
     }
 
 
