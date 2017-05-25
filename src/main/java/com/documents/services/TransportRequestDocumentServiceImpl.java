@@ -73,8 +73,8 @@ public class TransportRequestDocumentServiceImpl implements TransportRequestDocu
         JSONObject obj = new JSONObject(jsonString);
         jsonKeys.add(obj.getJSONObject("transport_request").getString("introduction"));
         jsonKeys.add(obj.getJSONObject("transport_request").getString("text1") + infoList.get(0));
-        jsonKeys.add(obj.getJSONObject("transport_request").getString("text2") + infoList.get(2));
-        jsonKeys.add(obj.getJSONObject("transport_request").getString("text3") + infoList.get(1));
+        jsonKeys.add(obj.getJSONObject("transport_request").getString("text2") + infoList.get(1));
+        jsonKeys.add(obj.getJSONObject("transport_request").getString("text3") + infoList.get(2));
         jsonKeys.add(obj.getJSONObject("transport_request").getString("text4"));
         jsonKeys.add(obj.getJSONObject("transport_request").getString("text5"));
         jsonKeys.add(obj.getJSONObject("transport_request").getString("final1"));

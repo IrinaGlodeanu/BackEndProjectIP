@@ -1,6 +1,8 @@
 package com.documents.controllers;
 
 
+import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,12 +17,18 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.documents.models.Student;
 import com.documents.models.TransportRequestDocument;
+import com.documents.services.StudentService;
 import com.documents.services.TransportRequestDocumentService;
+import com.itextpdf.text.DocumentException;
 
 @RestController
 @CrossOrigin("*")
 @RequestMapping(value = "/transport")
 public class TransportRequestDocumentController {
+
+
+    @Autowired
+    private StudentService studentService;
 
     @Autowired
     TransportRequestDocumentService transportRequestDocumentService;
@@ -84,5 +92,24 @@ public class TransportRequestDocumentController {
 
         return new ResponseEntity<>(list,HttpStatus.OK);
     }
+
+    @RequestMapping(value="/getPdf/{id}", method = RequestMethod.GET)
+    public  ResponseEntity<Student> getPdf(@PathVariable String id) throws IOException, DocumentException {
+        Student student = this.studentService.findById(Long.parseLong(id));
+
+        List<String> infoList = new ArrayList<String>();
+        infoList.add(student.getFirstName() +" "+ student.getLastName() );
+        infoList.add(student.getIdentityCardId());
+        /** NU OBSERVAM */
+        infoList.add("2");
+
+        this.transportRequestDocumentService.createPdf(infoList);
+
+
+        return new ResponseEntity<Student>(student,HttpStatus.OK);
+
+    }
+
+
 
 }
