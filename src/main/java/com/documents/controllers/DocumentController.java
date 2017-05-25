@@ -2,9 +2,11 @@ package com.documents.controllers;
 
 import java.util.List;
 
+import org.json.HTTP;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -20,6 +22,7 @@ import com.documents.services.DocumentService;
 
 @RestController
 @RequestMapping(value = "/document")
+@CrossOrigin("*")
 public class DocumentController {
 
     @Autowired
@@ -67,4 +70,18 @@ public class DocumentController {
         Document newDoc = docsTypeService.save(student);
         return new ResponseEntity<Document>(newDoc, HttpStatus.OK);
     }
+
+    @RequestMapping(value = "/history/{id)", method = RequestMethod.GET)
+    public ResponseEntity<List<Document>> findDocumentHistory(@PathVariable String id) {
+
+       List<Document> list = this.docsTypeService.findDocumentHistory(id.toString());
+
+
+       if(list.isEmpty()){
+           return new ResponseEntity<List<Document>>(HttpStatus.NO_CONTENT);
+       }
+
+       return new ResponseEntity<List<Document>>(list, HttpStatus.OK);
+    }
+
 }
