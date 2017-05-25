@@ -58,12 +58,10 @@ public class DocumentServiceImpl implements DocumentService {
     public List<Document> findDocumentHistory(String id) {
 
         Query query = entityManager.createNativeQuery(
-                "SELECT r.id, d.document_name FROM STUDENT s \n" +
-                        "    join request r on r.student_id = s.id\n" +
-                        "    join document d on d.id = r.document_id\n" +
-                        "    where s.id = " + id, Document.class  );
+                "SELECT r.id, d.document_name FROM request r join document d on d.id = r.document_id where r.student_id ="+ id);
 
-        List resultList = query.getResultList();
+        List<Document> resultList = query.getResultList();
+
 
         return  resultList;
     }
