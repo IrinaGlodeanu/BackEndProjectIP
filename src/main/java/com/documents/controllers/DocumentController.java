@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -12,13 +13,11 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.documents.models.Document;
+import com.documents.models.Student;
 import com.documents.services.DocumentService;
 
-/**
- * Created by pc on 5/7/2017.
- */
-
 @RestController
+@CrossOrigin("*")
 @RequestMapping(value = "/document")
 public class DocumentController {
 
@@ -67,4 +66,19 @@ public class DocumentController {
         Document newDoc = docsTypeService.save(student);
         return new ResponseEntity<Document>(newDoc, HttpStatus.OK);
     }
+
+    /**
+     * Get the list of students that have a Transport Request
+     * @return Student List
+     */
+    @RequestMapping(value = "/studentList/{id}",method = RequestMethod.GET)
+    public ResponseEntity<List<Student>> getStudentListForTransport(@PathVariable Long id){
+        List<Student> list = this.docsTypeService.getStudentListForDocumentRequest(id.toString());
+        if(list.isEmpty()){
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        }
+
+        return new ResponseEntity<>(list,HttpStatus.OK);
+    }
+
 }
