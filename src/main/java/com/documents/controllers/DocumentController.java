@@ -71,7 +71,7 @@ public class DocumentController {
         return new ResponseEntity<Document>(newDoc, HttpStatus.OK);
     }
 
-    @RequestMapping(value = "/history/{id)", method = RequestMethod.GET)
+    @RequestMapping(value = "/history/{id}", method = RequestMethod.GET)
     public ResponseEntity<List<Document>> findDocumentHistory(@PathVariable String id) {
 
        List<Document> list = this.docsTypeService.findDocumentHistory(id.toString());
