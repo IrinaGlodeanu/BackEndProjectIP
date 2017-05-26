@@ -31,7 +31,7 @@ public class DocumentTest {
 
     //to
     @Test
-    public void diplomaDocumentRequest_save_should_return_true() {
+    public void document_save_should_return_true() {
 
         Document documentToSave = new Document();
         Long id = (long) 3;
@@ -59,7 +59,7 @@ public class DocumentTest {
 
 
     @Test
-    public void diplomaDocumentRequest_deleteById_should_return_true() {
+    public void document_deleteById_should_return_true() {
         Long id = (long) 3;
 
         Document DocumentToDelete = new Document();
@@ -73,7 +73,7 @@ public class DocumentTest {
 
 
     @Test
-    public void diplomaDocumentRequest_findById_should_return_true() {
+    public void document_findById_should_return_true() {
         Document documentAfterFind = new Document();
 
         Long id = (long) 3;
