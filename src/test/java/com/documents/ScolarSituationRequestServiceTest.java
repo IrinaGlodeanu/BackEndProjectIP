@@ -61,6 +61,7 @@ public class ScolarSituationRequestServiceTest {
         assertEquals(currentYear, scolarSituationDocumentAfterSave.getCurrentYear());
         assertEquals(yearOfStudy, scolarSituationDocumentAfterSave.getYearOfStudy());
         assertEquals(hasBroughtReceipt, scolarSituationDocumentAfterSave.getHasBroughtReceipt());
+        //
     }
 
 
