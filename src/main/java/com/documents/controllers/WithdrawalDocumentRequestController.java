@@ -1,5 +1,7 @@
 package com.documents.controllers;
 
+import static com.documents.controllers.TransportRequestDocumentController.idRequest;
+
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -21,8 +23,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.documents.models.Request;
 import com.documents.models.Student;
 import com.documents.models.WithdrawalDocumentRequest;
+import com.documents.models.WithdrawalInput;
+import com.documents.services.RequestService;
 import com.documents.services.StudentService;
 import com.documents.services.WithdrawalDocumentRequestService;
 import com.itextpdf.text.DocumentException;
@@ -35,8 +40,14 @@ import com.itextpdf.text.DocumentException;
 @RequestMapping(value = "/withdrawalDocumentRequest")
 public class WithdrawalDocumentRequestController {
 
+    static Long idWithdrawal = Long.valueOf("0");
+
     @Autowired
     private StudentService studentService;
+
+
+    @Autowired
+    private RequestService requestService;
 
 
     @Autowired
@@ -87,6 +98,34 @@ public class WithdrawalDocumentRequestController {
         return new ResponseEntity<WithdrawalDocumentRequest>(newWithdrawalDocumentRequest, HttpStatus.OK);
     }
 
+
+    @RequestMapping(value = "/insert/{id}", method = RequestMethod.POST)
+    public ResponseEntity<Request> insertTransportRequest(@RequestBody WithdrawalInput withdrawalInput, @PathVariable String id) {
+        Student student = this.studentService.findById(Long.parseLong(id));
+
+        if (student.equals(null)) {
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        }
+        WithdrawalDocumentRequest withdrawalDocumentRequest = new WithdrawalDocumentRequest();
+        withdrawalDocumentRequest.setId(idWithdrawal + 1);
+        idWithdrawal = idWithdrawal + 1;
+        withdrawalDocumentRequest.setStudentId(student.getId());
+        withdrawalDocumentRequest.setSeries(withdrawalInput.getNrSeriesId());
+        withdrawalDocumentRequest.setUniversityYear(Long.valueOf(withdrawalInput.getYearOfStudy()));
+        withdrawalDocumentRequest.setStudyYear(Long.valueOf(withdrawalInput.getCurrentYear()));
+        withdrawalDocumentRequest.setTypeOfCourses(withdrawalInput.getCourse());
+
+        this.withdrawalDocumentRequestService.save(withdrawalDocumentRequest);
+
+        Request request = new Request();
+        request.setId(idRequest + 1);
+        idRequest = idRequest + 1;
+        request.setStudentId(student.getId());
+        request.setDocumentId(Long.parseLong("2"));
+        this.requestService.save(request);
+
+        return new ResponseEntity<Request>(request, HttpStatus.OK);
+    }
 
     /**
      * Generate the document for a particular student with the id received from PathVariable
