@@ -68,7 +68,7 @@ public class DocumentController {
     }
 
     /**
-     * Get the list of students that have a Transport Request
+     * Get the list of students that have a specific Document Request
      * @return Student List
      */
     @RequestMapping(value = "/studentList/{id}",method = RequestMethod.GET)

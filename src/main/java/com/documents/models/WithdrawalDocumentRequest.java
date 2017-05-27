@@ -19,8 +19,8 @@ public class WithdrawalDocumentRequest extends Document{
     @Column(name = "document_name")
     private String documentName;
 
-    @Column(name = "student_name")
-    private String studentName;
+    @Column(name = "student_id")
+    private Long studentId;
 
     @Column(name = "series_ID_Card")
     private String series;
@@ -75,13 +75,6 @@ public class WithdrawalDocumentRequest extends Document{
         this.documentName = documentName;
     }
 
-    public String getStudentName() {
-        return studentName;
-    }
-
-    public void setStudentName(String studentName) {
-        this.studentName = studentName;
-    }
 
     public String getSeries() {
         return series;
@@ -169,5 +162,13 @@ public class WithdrawalDocumentRequest extends Document{
 
     public void setNumberSheet(Long numberSheet) {
         this.numberSheet = numberSheet;
+    }
+
+    public Long getStudentId() {
+        return studentId;
+    }
+
+    public void setStudentId(Long studentId) {
+        this.studentId = studentId;
     }
 }

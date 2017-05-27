@@ -3,8 +3,11 @@ package com.documents.models;
 import javax.persistence.Column;
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.persistence.TableGenerator;
 
 /**
  * Created by AlenaHa on 10.05.2017.
@@ -13,7 +16,10 @@ import javax.persistence.Table;
 @Table(name = "Diploma")
 @DiscriminatorValue("Cerere Diploma")
 public class DiplomaDocumentRequest extends Document {
+
+    @TableGenerator(name = "Doc_Gen", table = "ID_GEN", pkColumnName = "GEN_NAME", valueColumnName = "GEN_VAL", pkColumnValue = "Addr_Gen", initialValue = 1, allocationSize = 100)
     @Id
+    @GeneratedValue(strategy = GenerationType.TABLE, generator = "Doc_Gen")
     private Long id;
 
     @Column(name = "document_name")

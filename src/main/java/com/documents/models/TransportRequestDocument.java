@@ -3,8 +3,11 @@ package com.documents.models;
 import javax.persistence.Column;
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.persistence.TableGenerator;
 
 /**
  * Created by Simona on 12-May-17.
@@ -13,7 +16,9 @@ import javax.persistence.Table;
 @Table(name = "Transport")
 @DiscriminatorValue("Cerere Transport")
 public class TransportRequestDocument extends Document {
+    @TableGenerator(name = "Transport_Gen", table = "ID_GEN", pkColumnName = "GEN_NAME", valueColumnName = "GEN_VAL",initialValue = 1, allocationSize = 100)
     @Id
+    @GeneratedValue(strategy = GenerationType.TABLE, generator = "Transport_Gen")
     private Long id;
 
     @Column(name = "document_name")
@@ -23,10 +28,11 @@ public class TransportRequestDocument extends Document {
     private String studentName;
 
     @Column(name = "nr_series_id")
-    private Integer nrSeriesId;
+    private String nrSeriesId;
 
     @Column(name = "year_of_study")
-    private Integer yearOfStudy;
+    private String yearOfStudy;
+
 
     @Override
     public Long getId() {
@@ -56,19 +62,19 @@ public class TransportRequestDocument extends Document {
         this.studentName = studentName;
     }
 
-    public Integer getNrSeriesId() {
+    public String getNrSeriesId() {
         return nrSeriesId;
     }
 
-    public void setNrSeriesId(Integer nrSeriesId) {
+    public void setNrSeriesId(String nrSeriesId) {
         this.nrSeriesId = nrSeriesId;
     }
 
-    public Integer getYearOfStudy() {
+    public String getYearOfStudy() {
         return yearOfStudy;
     }
 
-    public void setYearOfStudy(Integer yearOfStudy) {
+    public void setYearOfStudy(String yearOfStudy) {
         this.yearOfStudy = yearOfStudy;
     }
 }

@@ -57,13 +57,13 @@ public class WithdrawalDocumentRequestServiceImpl implements WithdrawalDocumentR
 
         JSONObject obj = new JSONObject(jsonString);
         jsonKeys.add(obj.getJSONObject("withdrawal_document_request").getString("introduction"));
-        jsonKeys.add(obj.getJSONObject("withdrawal_document_request").getString("text1"));
-        jsonKeys.add(obj.getJSONObject("withdrawal_document_request").getString("text2"));
-        jsonKeys.add(obj.getJSONObject("withdrawal_document_request").getString("text3"));
-        jsonKeys.add(obj.getJSONObject("withdrawal_document_request").getString("text4"));
-        jsonKeys.add(obj.getJSONObject("withdrawal_document_request").getString("text5"));
-        jsonKeys.add(obj.getJSONObject("withdrawal_document_request").getString("text6"));
-        jsonKeys.add(obj.getJSONObject("withdrawal_document_request").getString("text7"));
+        jsonKeys.add(obj.getJSONObject("withdrawal_document_request").getString("text1") +  infoList.get(0));
+        jsonKeys.add(obj.getJSONObject("withdrawal_document_request").getString("text2") + infoList.get(1));
+        jsonKeys.add(obj.getJSONObject("withdrawal_document_request").getString("text3") + infoList.get(2));
+        jsonKeys.add(obj.getJSONObject("withdrawal_document_request").getString("text4") + infoList.get(3));
+        jsonKeys.add(obj.getJSONObject("withdrawal_document_request").getString("text5") + infoList.get(4));
+        jsonKeys.add(obj.getJSONObject("withdrawal_document_request").getString("text6") + infoList.get(5));
+        jsonKeys.add(obj.getJSONObject("withdrawal_document_request").getString("text7") + infoList.get(6));
         jsonKeys.add(obj.getJSONObject("withdrawal_document_request").getString("final"));
 
 
