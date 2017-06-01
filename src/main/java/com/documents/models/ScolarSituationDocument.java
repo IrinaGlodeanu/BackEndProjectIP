@@ -17,14 +17,17 @@ public class ScolarSituationDocument extends Document {
     @Column(name = "document_name")
     private String documentName;
 
+    @Column(name = "student_id")
+    private String studentId;
+
     @Column(name = "student_name")
     private String studentName;
 
     @Column(name = "current_year")
-    private Integer currentYear;
+    private String currentYear;
 
     @Column(name = "year_of_study")
-    private Integer yearOfStudy;
+    private String yearOfStudy;
 
     @Column(name = "receipt_received")
     private String hasBroughtReceipt;
@@ -44,6 +47,14 @@ public class ScolarSituationDocument extends Document {
         return documentName;
     }
 
+    public String getStudentId() {
+        return studentId;
+    }
+
+    public void setStudentId(String studentId) {
+        this.studentId = studentId;
+    }
+
     @Override
     public void setDocumentName(String documentName) {
         this.documentName = documentName;
@@ -57,19 +68,19 @@ public class ScolarSituationDocument extends Document {
         this.studentName = studentName;
     }
 
-    public Integer getCurrentYear() {
+    public String getCurrentYear() {
         return currentYear;
     }
 
-    public void setCurrentYear(Integer currentYear) {
+    public void setCurrentYear(String currentYear) {
         this.currentYear = currentYear;
     }
 
-    public Integer getYearOfStudy() {
+    public String getYearOfStudy() {
         return yearOfStudy;
     }
 
-    public void setYearOfStudy(Integer yearOfStudy) {
+    public void setYearOfStudy(String yearOfStudy) {
         this.yearOfStudy = yearOfStudy;
     }
 

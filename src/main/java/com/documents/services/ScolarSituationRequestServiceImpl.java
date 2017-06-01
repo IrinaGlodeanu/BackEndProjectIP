@@ -8,14 +8,12 @@ import java.util.List;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
-import javax.persistence.Query;
 
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.documents.models.ScolarSituationDocument;
-import com.documents.models.Student;
 import com.documents.repositories.ScolarSituationRequestRepository;
 import com.itextpdf.text.Document;
 import com.itextpdf.text.DocumentException;
@@ -109,5 +107,6 @@ public class ScolarSituationRequestServiceImpl implements ScolarSituationRequest
         ScolarSituationDocument scolarSituationDocument = this.scolarSituationRequestRepository.findByStudentId(id);
         return scolarSituationDocument;
     }
+
 
 }
