@@ -18,6 +18,7 @@ import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 import org.mockito.runners.MockitoJUnitRunner;
 
+import com.documents.models.LoginData;
 import com.documents.models.Student;
 import com.documents.repositories.StudentRepository;
 import com.documents.services.StudentServiceImpl;
@@ -30,6 +31,9 @@ public class StudentServiceTest {
     //Arrange
     @Mock
     private StudentRepository studentRepository;
+
+    @Mock
+    private LoginData loginData;
 
     @InjectMocks
     private StudentServiceImpl studentServiceImpl = new StudentServiceImpl();
@@ -225,4 +229,18 @@ public class StudentServiceTest {
         assertEquals(students.get(0).getPassword(), foundStudents.get(0).getPassword());
 
     }
+
+    @Test
+    public void behavioural_getStudent_should_return_true() throws Exception {
+
+        Student studentToReturn = new Student();
+
+        when(studentRepository.findByWebmailAndPassword(any(String.class), any(String.class))).thenReturn(studentToReturn);
+
+        studentToReturn = studentServiceImpl.getStudent(loginData);
+
+        assertNotNull(studentToReturn);
+
+    }
+
 }
