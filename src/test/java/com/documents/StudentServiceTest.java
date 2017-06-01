@@ -225,5 +225,4 @@ public class StudentServiceTest {
         assertEquals(students.get(0).getPassword(), foundStudents.get(0).getPassword());
 
     }
-
 }
