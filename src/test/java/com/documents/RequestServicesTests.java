@@ -1,8 +1,15 @@
 package com.documents;
 
-import com.documents.models.Request;
-import com.documents.repositories.RequestRepository;
-import com.documents.services.RequestServiceImpl;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertNull;
+import static org.mockito.Matchers.any;
+import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
+
+import java.util.ArrayList;
+import java.util.List;
+
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -11,77 +18,177 @@ import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 import org.mockito.runners.MockitoJUnitRunner;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotNull;
-import static org.mockito.Matchers.any;
-import static org.mockito.Mockito.verify;
-import static org.mockito.Mockito.when;
+import com.documents.models.Request;
+import com.documents.repositories.RequestRepository;
+import com.documents.services.RequestServiceImpl;
 
 @RunWith(MockitoJUnitRunner.class)
 public class RequestServicesTests {
 
+    //Arrange
     @Mock
     private RequestRepository requestRepository;
 
     @InjectMocks
-    private RequestServiceImpl requestService = new RequestServiceImpl();
+    private RequestServiceImpl requestServiceImpl = new RequestServiceImpl();
 
     @Before
     public void initializeMockito() {
         MockitoAnnotations.initMocks(this);
     }
 
+
+    public void setup(Request requestToSet) {
+
+        requestToSet.setId((long) 3);
+        requestToSet.setDocumentId((long) 56);
+        requestToSet.setStudentId((long) 3435);
+    }
+
     @Test
-    public void request_save_should_return_true() throws Exception {
+    public void behavioural_request_save_should_return_true() throws Exception {
+
+        //Act
+        Request requestAfterSave = new Request();
         Request requestToSave = new Request();
-        Long id = (long) 3;
-        Long studentId = (long) 123;
-        Long documentId = (long) 10;
+
+        setup(requestToSave);
+
+        when(requestRepository.save(any(Request.class))).thenReturn(requestAfterSave);
+
+        requestAfterSave = requestServiceImpl.save(requestToSave);
+
+        //Assert
+        assertNotNull(requestAfterSave);
+    }
+
+    @Test
+    public void functionality_request_save_should_return_request() throws Exception {
+
+        //Act
         Request requestAfterSave = new Request();
 
-        requestToSave.setId(id);
-        requestToSave.setStudentId(studentId);
-        requestToSave.setDocumentId(documentId);
+        setup(requestAfterSave);
 
-        when(requestService.save(any(Request.class))).thenReturn(requestToSave);
+        when(requestRepository.save(any(Request.class))).thenReturn(requestAfterSave);
 
-        requestAfterSave = requestService.save(requestToSave);
-        assertNotNull(requestAfterSave);
-        assertEquals(id, requestAfterSave.getId());
-        assertEquals(studentId, requestAfterSave.getStudentId());
-        assertEquals(documentId, requestAfterSave.getDocumentId());
+        Request savedRequest = requestServiceImpl.save(requestAfterSave);
+
+        //Assert
+        assertEquals(Long.valueOf(3), savedRequest.getId());
+        assertEquals(Long.valueOf(56), savedRequest.getDocumentId());
+        assertEquals(Long.valueOf(3435), savedRequest.getStudentId());
+
     }
 
     @Test
-    public void request_findById_should_return_true() throws Exception {
+    public void behavioural_request_findById_should_return_true() throws Exception {
+
+        //Act
         Request requestToSave = new Request();
-        long userId = (long) 123;
-        requestToSave.setId(userId);
-        when(requestService.findById(any(long.class))).thenReturn(requestToSave);
-        Request requestAfterSave = requestService.findById(requestToSave.getId());
-        long userIdAfter = requestAfterSave.getId();
-        assertNotNull(requestAfterSave);
-        assertEquals(userId, userIdAfter);
+
+        when(requestRepository.findOne(any(long.class))).thenReturn(requestToSave);
+
+        requestToSave = requestServiceImpl.findById((long) 123);
+
+        //Assert
+        assertNotNull(requestToSave);
     }
 
     @Test
-    public void request_deleteById_should_return_true() throws Exception {
+    public void functionality_request_findById_should_return_request() throws Exception {
+
+        //Act
+        Request requestToFind = new Request();
+
+        setup(requestToFind);
+
+        when(requestRepository.findOne(any(long.class))).thenReturn(requestToFind);
+
+        Request foundRequest = requestServiceImpl.findById((long) 3);
+
+        //Assert
+        assertEquals(Long.valueOf(3), foundRequest.getId());
+        assertEquals(Long.valueOf(56), foundRequest.getDocumentId());
+        assertEquals(Long.valueOf(3435), foundRequest.getStudentId());
+
+    }
+
+    @Test
+    public void behavioural_request_deleteById_should_return_true() throws Exception {
+
+        //Act
         Request request = new Request();
-        long userId = 3;
-        request.setId(userId);
-        requestService.delete(request.getId());
+
+        request.setId((long) 3);
+
+        requestServiceImpl.delete(request.getId());
+
+        Request foundRequest = requestServiceImpl.findById((long) 3);
+
+        //Assert
+        assertNull(foundRequest);
+
+    }
+
+
+    @Test
+    public void functionality_request_deleteById_should_delete_request() throws Exception {
+
+        //Act
+        Request request = new Request();
+
+        requestServiceImpl.delete(request.getId());
+
+        //Assert
         verify(requestRepository).delete(request.getId());
 
     }
 
-  /*  @Test
-    public void licenseRequest_findAll_should_return_true() throws Exception {
-        List<LicenseRegistrationForm> forms = new ArrayList<>();
-        LicenseRegistrationForm licenseRegistrationForm =new LicenseRegistrationForm();
-        forms.add(licenseRegistrationForm);
-        Mockito.when(licenseRegistrationFormServiceImpl.findAll()).thenReturn(forms);
-        licenseRegistrationFormServiceImpl.findAll();
-        assertNotNull(forms);
+    @Test
+    public void behavioural_request_findAll_should_return_true() throws Exception {
+
+        //Act
+        List<Request> requests = new ArrayList<>();
+
+        Request request = new Request();
+
+        setup(request);
+
+        when(requestRepository.findAll()).thenReturn(requests);
+
+        requests.add(request);
+
+        List<Request> foundRequests;
+        foundRequests = requestServiceImpl.findAll();
+
+        //Assert
+        assertNotNull(foundRequests);
+
     }
- */
+
+    @Test
+    public void functionality_request_findAll_should_return_list_of_request() throws Exception {
+
+        //Act
+        List<Request> requests = new ArrayList<>();
+
+        Request request = new Request();
+
+        setup(request);
+
+        when(requestRepository.findAll()).thenReturn(requests);
+
+        requests.add(request);
+
+        List<Request> foundRequests;
+        foundRequests = requestServiceImpl.findAll();
+
+        //Assert
+        assertEquals(requests.get(0).getId(), foundRequests.get(0).getId());
+        assertEquals(requests.get(0).getDocumentId(), foundRequests.get(0).getDocumentId());
+        assertEquals(requests.get(0).getStudentId(), foundRequests.get(0).getStudentId());
+
+    }
+
 }
