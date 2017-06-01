@@ -24,10 +24,6 @@ import com.documents.repositories.WithdrawalDocumentRequestRepository;
 import com.documents.services.WithdrawalDocumentRequestService;
 import com.documents.services.WithdrawalDocumentRequestServiceImpl;
 
-/**
- * Created by Cami on 2017-06-01.
- */
-
 @RunWith(MockitoJUnitRunner.class)
 public class WithdrawalDocumentRequestServiceTest {
 
@@ -61,6 +57,8 @@ public class WithdrawalDocumentRequestServiceTest {
 
     @Test
     public void behavioural_withdrawalDocumentRequest_save_should_return_true() throws Exception {
+
+        //Act
         WithdrawalDocumentRequest withdrawalDocumentRequestAfterSave = new WithdrawalDocumentRequest();
         WithdrawalDocumentRequest withdrawalDocumentRequestToSave = new WithdrawalDocumentRequest();
 
@@ -70,12 +68,14 @@ public class WithdrawalDocumentRequestServiceTest {
 
         withdrawalDocumentRequestAfterSave = withdrawalDocumentRequestServiceImpl.save(withdrawalDocumentRequestToSave);
 
+        //Assert
         assertNotNull(withdrawalDocumentRequestAfterSave);
     }
 
     @Test
     public void functionality_withdrawalDocumentRequest_save_should_return_withdrawalDocumentRequest() throws Exception {
 
+        //Act
         WithdrawalDocumentRequest withdrawalDocumentRequestAfterSave = new WithdrawalDocumentRequest();
 
         setup(withdrawalDocumentRequestAfterSave);
@@ -84,6 +84,7 @@ public class WithdrawalDocumentRequestServiceTest {
 
         WithdrawalDocumentRequest savedWithdrawalDocumentRequest = withdrawalDocumentRequestServiceImpl.save(withdrawalDocumentRequestAfterSave);
 
+        //Assert
         assertEquals(Long.valueOf(3), savedWithdrawalDocumentRequest.getId());
         assertEquals("DocName", savedWithdrawalDocumentRequest.getDocumentName());
         assertEquals(Long.valueOf(34), savedWithdrawalDocumentRequest.getStudentId());
@@ -103,18 +104,21 @@ public class WithdrawalDocumentRequestServiceTest {
     @Test
     public void behavioural_withdrawalDocumentRequest_findById_should_return_true() throws Exception {
 
-        WithdrawalDocumentRequest withdrawalDocumentRequestToSave = new WithdrawalDocumentRequest();
+        //Act
+        WithdrawalDocumentRequest withdrawalDocumentRequestToFind = new WithdrawalDocumentRequest();
 
-        when(withdrawalDocumentRequestRepository.findOne(any(long.class))).thenReturn(withdrawalDocumentRequestToSave);
+        when(withdrawalDocumentRequestRepository.findOne(any(long.class))).thenReturn(withdrawalDocumentRequestToFind);
 
-        withdrawalDocumentRequestToSave = withdrawalDocumentRequestServiceImpl.findById((long) 123);
+        withdrawalDocumentRequestToFind = withdrawalDocumentRequestServiceImpl.findById((long) 123);
 
-        Assert.assertNotNull(withdrawalDocumentRequestToSave);
+        //Assert
+        Assert.assertNotNull(withdrawalDocumentRequestToFind);
     }
 
     @Test
     public void behavioural_withdrawalDocumentRequest_deleteById_should_return_true() throws Exception {
 
+        //Act
         WithdrawalDocumentRequest withdrawalDocumentRequest = new WithdrawalDocumentRequest();
 
         withdrawalDocumentRequest.setId((long) 3);
@@ -123,6 +127,7 @@ public class WithdrawalDocumentRequestServiceTest {
 
         WithdrawalDocumentRequest foundWithdrawalDocumentRegistrationForm = withdrawalDocumentRequestServiceImpl.findById((long) 3);
 
+        //Assert
         assertNull(foundWithdrawalDocumentRegistrationForm);
 
     }
@@ -143,6 +148,7 @@ public class WithdrawalDocumentRequestServiceTest {
     @Test
     public void behavioural_withdrawalDocumentRequest_findAll_should_return_true() throws Exception {
 
+        //Act
         List<WithdrawalDocumentRequest> withdrawalDocumentRequests = new ArrayList<>();
 
         WithdrawalDocumentRequest withdrawalDocumentRequest = new WithdrawalDocumentRequest();
@@ -156,6 +162,7 @@ public class WithdrawalDocumentRequestServiceTest {
         List<WithdrawalDocumentRequest> foundForms;
         foundForms = withdrawalDocumentRequestServiceImpl.findAll();
 
+        //Assert
         Assert.assertNotNull(foundForms);
 
     }
@@ -163,6 +170,7 @@ public class WithdrawalDocumentRequestServiceTest {
     @Test
     public void functionality_withdrawalDocumentRequest_findAll_should_return_list_of_withdrawalDocumentRequest() throws Exception {
 
+        //Act
         List<WithdrawalDocumentRequest> withdrawalDocumentRequests = new ArrayList<>();
 
         WithdrawalDocumentRequest withdrawalDocumentRequest = new WithdrawalDocumentRequest();

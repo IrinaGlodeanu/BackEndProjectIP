@@ -24,9 +24,6 @@ import com.documents.models.WithdrawalDocumentRequest;
 import com.documents.repositories.TransportRequestDocumentRepository;
 import com.documents.services.TransportRequestDocumentServiceImpl;
 
-/**
- * Created by Cami on 2017-06-01.
- */
 @RunWith(MockitoJUnitRunner.class)
 public class TransportRequestDocumentRequestServiceTest {
 
@@ -53,6 +50,7 @@ public class TransportRequestDocumentRequestServiceTest {
     @Test
     public void behavioural_transportRequestDocument_save_should_return_true() throws Exception {
 
+        //Act
         TransportRequestDocument transportRequestDocumentAfterSave = new TransportRequestDocument();
         TransportRequestDocument transportRequestDocumentToSave = new TransportRequestDocument();
 
@@ -62,12 +60,14 @@ public class TransportRequestDocumentRequestServiceTest {
 
         transportRequestDocumentAfterSave = transportRequestDocumentServiceImpl.save(transportRequestDocumentToSave);
 
+        //Assert
         assertNotNull(transportRequestDocumentAfterSave);
     }
 
     @Test
     public void functionality_transportRequest_save_should_return_transportRequest() throws Exception {
 
+        //Act
         TransportRequestDocument transportRequestDocumentAfterSave = new TransportRequestDocument();
 
         setup(transportRequestDocumentAfterSave);
@@ -76,6 +76,7 @@ public class TransportRequestDocumentRequestServiceTest {
 
         TransportRequestDocument savedTransportRequestDocument = transportRequestDocumentServiceImpl.save(transportRequestDocumentAfterSave);
 
+        //Assert
         assertEquals(Long.valueOf(23), savedTransportRequestDocument.getId());
         assertEquals("Transport", savedTransportRequestDocument.getDocumentName());
         assertEquals("Ionica", savedTransportRequestDocument.getStudentName());
@@ -87,18 +88,21 @@ public class TransportRequestDocumentRequestServiceTest {
     @Test
     public void behavioural_transportRequest_findById_should_return_true() throws Exception {
 
-        TransportRequestDocument transportRequestDocumentToSave = new TransportRequestDocument();
+        //Act
+        TransportRequestDocument transportRequestDocument = new TransportRequestDocument();
 
-        when(transportRequestDocumentRepository.findOne(any(long.class))).thenReturn(transportRequestDocumentToSave);
+        when(transportRequestDocumentRepository.findOne(any(long.class))).thenReturn(transportRequestDocument);
 
-        transportRequestDocumentToSave = transportRequestDocumentServiceImpl.findById((long) 123);
+        transportRequestDocument = transportRequestDocumentServiceImpl.findById((long) 123);
 
-        assertNotNull(transportRequestDocumentToSave);
+        //Assert
+        assertNotNull(transportRequestDocument);
     }
 
     @Test
     public void functionality_transportRequest_findById_should_return_transportRequest() throws Exception {
 
+        //Act
         TransportRequestDocument transportRequestDocumentToFind = new TransportRequestDocument();
 
         setup(transportRequestDocumentToFind);
@@ -107,6 +111,7 @@ public class TransportRequestDocumentRequestServiceTest {
 
         TransportRequestDocument foundTransportRequestDocument = transportRequestDocumentServiceImpl.findById((long) 3);
 
+        //Assert
         assertEquals(Long.valueOf(23), foundTransportRequestDocument.getId());
         assertEquals("Transport", foundTransportRequestDocument.getDocumentName());
         assertEquals("Ionica", foundTransportRequestDocument.getStudentName());
@@ -127,13 +132,14 @@ public class TransportRequestDocumentRequestServiceTest {
 
         TransportRequestDocument foundTransportRequestDocument = transportRequestDocumentServiceImpl.findById((long) 3);
 
+        //Assert
         assertNull(foundTransportRequestDocument);
 
     }
 
 
     @Test
-    public void functionality_transportRequest_deleteById_should_return_delete_transportRequest() throws Exception {
+    public void functionality_transportRequest_deleteById_should_delete_transportRequest() throws Exception {
 
         //Act
         TransportRequestDocument transportRequestDocument = new TransportRequestDocument();
@@ -170,6 +176,7 @@ public class TransportRequestDocumentRequestServiceTest {
     @Test
     public void functionality_transportRequest_findAll_should_return_list_of_transportRequest() throws Exception {
 
+        //Act
         List<TransportRequestDocument> transportRequestDocuments = new ArrayList<>();
 
         TransportRequestDocument transportRequestDocument = new TransportRequestDocument();
@@ -183,6 +190,7 @@ public class TransportRequestDocumentRequestServiceTest {
         List<TransportRequestDocument> foundForms;
         foundForms = transportRequestDocumentServiceImpl.findAll();
 
+        //Assert
         assertEquals(transportRequestDocuments.get(0).getId(), foundForms.get(0).getId());
         assertEquals(transportRequestDocuments.get(0).getDocumentName(), foundForms.get(0).getDocumentName());
         assertEquals(transportRequestDocuments.get(0).getStudentName(), foundForms.get(0).getStudentName());
