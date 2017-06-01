@@ -2,19 +2,25 @@ package com.documents;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertNull;
 import static org.mockito.Matchers.any;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
+import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
+import org.mockito.MockitoAnnotations;
 import org.mockito.runners.MockitoJUnitRunner;
 
 import com.documents.models.DiplomaDocumentRequest;
 import com.documents.repositories.DiplomaDocumentRequestRepository;
 import com.documents.services.DiplomaDocumentRequestServiceImpl;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by pc on 5/25/2017.
@@ -28,103 +34,151 @@ public class DiplomaDocumentRequestServiceTest {
     @InjectMocks
     private DiplomaDocumentRequestServiceImpl diplomaDocumentRequestService = new DiplomaDocumentRequestServiceImpl();
 
+    @Before
+    public void initializeMockito() {
+        MockitoAnnotations.initMocks(this);
+    }
+
+    public void setup(DiplomaDocumentRequest diplomaDocumentRequest) {
+        diplomaDocumentRequest.setId((long) 3);
+        diplomaDocumentRequest.setDocumentName("Document_name");
+        diplomaDocumentRequest.setStudentName("Student_name");
+        diplomaDocumentRequest.setCurrentYear(2015);
+        diplomaDocumentRequest.setYearOfStudy(2);
+    }
 
     @Test
-    public void diplomaDocumentRequest_save_should_return_true() {
+    public void behavioural_diplomaRequest_save_should_return_true() throws Exception {
 
+        //Act
+        DiplomaDocumentRequest diplomaDocumentRequestAfterSave ;
         DiplomaDocumentRequest diplomaDocumentRequestToSave = new DiplomaDocumentRequest();
-        Long id = (long) 3;
-        String documentName = "DocName";
-        String studentName = "Student";
-        Integer currentYear = 2107;
-        Integer yearOfStudy = 2;
-        DiplomaDocumentRequest diplomaDocumentRequestAfterSave = new DiplomaDocumentRequest();
 
-        diplomaDocumentRequestToSave.setId(id);
-        diplomaDocumentRequestToSave.setDocumentName(documentName);
-        diplomaDocumentRequestToSave.setStudentName(studentName);
-        diplomaDocumentRequestToSave.setCurrentYear(currentYear);
-        diplomaDocumentRequestToSave.setYearOfStudy(yearOfStudy);
+        setup(diplomaDocumentRequestToSave);
 
         when(diplomaDocumentRequestService.save(any(DiplomaDocumentRequest.class))).thenReturn(diplomaDocumentRequestToSave);
 
-
         diplomaDocumentRequestAfterSave = diplomaDocumentRequestService.save(diplomaDocumentRequestToSave);
 
+        //Assert
         assertNotNull(diplomaDocumentRequestAfterSave);
-        assertEquals(id, diplomaDocumentRequestAfterSave.getId());
-        assertEquals(documentName, diplomaDocumentRequestAfterSave.getDocumentName());
-        assertEquals(studentName, diplomaDocumentRequestAfterSave.getStudentName());
-        assertEquals(currentYear, diplomaDocumentRequestAfterSave.getCurrentYear());
-        assertEquals(yearOfStudy, diplomaDocumentRequestAfterSave.getYearOfStudy());
+    }
+
+    @Test
+    public void functionality_diplomaRequest_save_should_return_diplomaRequest() throws Exception {
+        //Act
+        DiplomaDocumentRequest diplomaDocumentRequestAfterSave ;
+        DiplomaDocumentRequest diplomaDocumentRequestToSave = new DiplomaDocumentRequest();
+
+        setup(diplomaDocumentRequestToSave);
+
+        when(diplomaDocumentRequestService.save(any(DiplomaDocumentRequest.class))).thenReturn(diplomaDocumentRequestToSave);
+
+        diplomaDocumentRequestAfterSave=diplomaDocumentRequestService.save(diplomaDocumentRequestToSave);
+
+        //Assert
+        assertEquals(Long.valueOf(3),diplomaDocumentRequestAfterSave.getId());
+        assertEquals("Document_name",diplomaDocumentRequestAfterSave.getDocumentName());
+        assertEquals("Student_name",diplomaDocumentRequestAfterSave.getStudentName());
+        assertEquals(Integer.valueOf(2015),diplomaDocumentRequestAfterSave.getCurrentYear());
+        assertEquals(Integer.valueOf(2),diplomaDocumentRequestAfterSave.getYearOfStudy());
+    }
+    @Test
+    public void behavioral_diplomaRequest_findById_should_return_diplomaRequest() throws Exception{
+        //Act
+        DiplomaDocumentRequest diplomaDocumentRequestToSave = new DiplomaDocumentRequest();
+
+        when(diplomaDocumentRequestRepository.findOne(any(long.class))).thenReturn(diplomaDocumentRequestToSave);
+        diplomaDocumentRequestToSave=diplomaDocumentRequestService.findById((long)3);
+
+        //Assert
+        assertNotNull(diplomaDocumentRequestToSave);
+    }
+    @Test
+    public void functionality_diplomaRequest_findById_should_return_diplomaRequest() throws Exception  {
+        //Act
+        DiplomaDocumentRequest findedDiplomaRecForm ;
+        DiplomaDocumentRequest diplomaDocumentRequestToFind = new DiplomaDocumentRequest();
+
+        setup(diplomaDocumentRequestToFind);
+
+        when(diplomaDocumentRequestRepository.findOne(any(long.class))).thenReturn(diplomaDocumentRequestToFind);
+
+        findedDiplomaRecForm=diplomaDocumentRequestService.findById((long)3);
+
+        //Assert
+        assertEquals(Long.valueOf(3),findedDiplomaRecForm.getId());
+        assertEquals("Document_name",findedDiplomaRecForm.getDocumentName());
+        assertEquals("Student_name",findedDiplomaRecForm.getStudentName());
+        assertEquals(Integer.valueOf(2015),findedDiplomaRecForm.getCurrentYear());
+        assertEquals(Integer.valueOf(2),findedDiplomaRecForm.getYearOfStudy());
     }
 
 
     @Test
-    public void diplomaDocumentRequest_deleteById_should_return_true() {
-        Long id = (long) 3;
+    public void behavioural_diplomaRequest_deleteById_should_return_true() throws Exception  {
+        //Act
+        DiplomaDocumentRequest findedDiplomaRecForm ;
+        DiplomaDocumentRequest diplomaDocumentRequestToFind = new DiplomaDocumentRequest();
 
+        diplomaDocumentRequestToFind.setId((long)3);
+        diplomaDocumentRequestService.delete(diplomaDocumentRequestToFind.getId());
 
-        DiplomaDocumentRequest diplomaDocumentRequestToDelete = new DiplomaDocumentRequest();
-        diplomaDocumentRequestToDelete.setId(id);
+        findedDiplomaRecForm=diplomaDocumentRequestService.findById((long)3);
 
-        diplomaDocumentRequestService.delete(diplomaDocumentRequestToDelete.getId());
-
-        verify(diplomaDocumentRequestRepository).delete(diplomaDocumentRequestToDelete.getId());
-
+        //Assert
+        assertNull(findedDiplomaRecForm);
     }
+    @Test
+    public void functionality_diplomaRequest_deleteById_should_return_true() throws Exception  {
+        //Act
+        DiplomaDocumentRequest diplomaDocumentRequest=new DiplomaDocumentRequest();
 
+        diplomaDocumentRequestService.delete(diplomaDocumentRequest.getId());
+
+        //Assert
+        verify(diplomaDocumentRequestRepository).delete(diplomaDocumentRequest.getId());
+    }
 
     @Test
-    public void diplomaDocumentRequest_findById_should_return_true() {
-        DiplomaDocumentRequest diplomaDocumentRequestAfterFind = new DiplomaDocumentRequest();
+    public void behavioural_diplomaRequest_findAll_should_return_true() throws Exception {
+        //Act
+        List<DiplomaDocumentRequest> diplomaDocumentRequestList = new ArrayList<>();
+        DiplomaDocumentRequest diplomaDocumentRequest = new DiplomaDocumentRequest();
 
-        Long id = (long) 3;
+        setup(diplomaDocumentRequest);
 
-        diplomaDocumentRequestAfterFind.setId(id);
+        when(diplomaDocumentRequestRepository.findAll()).thenReturn(diplomaDocumentRequestList);
 
-        when(diplomaDocumentRequestService.findById(id)).thenReturn(diplomaDocumentRequestAfterFind);
+        diplomaDocumentRequestList.add(diplomaDocumentRequest);
 
-        DiplomaDocumentRequest newDiplomaRequest = diplomaDocumentRequestService.findById(id);
+        List<DiplomaDocumentRequest> findedList=diplomaDocumentRequestService.findAll();
 
-        assertNotNull(newDiplomaRequest);
-        assertEquals(id, newDiplomaRequest.getId());
-
+        //Assert
+        assertNotNull(findedList);
     }
 
+    @Test
+    public void functionality_diplomaRequest_findAll_should_return_true() throws Exception {
+        //Act
+        List<DiplomaDocumentRequest> diplomaDocumentRequestList = new ArrayList<>();
+        DiplomaDocumentRequest diplomaDocumentRequest = new DiplomaDocumentRequest();
 
-//    //not quite right
-//    @Test
-//    public void diplomaDocumentRequest_findAll_should_return_true()
-//    {
-//        List<DiplomaDocumentRequest> listOfDiplomaRequests= new ArrayList();
-//
-//        DiplomaDocumentRequest diplomaDocumentRequestAfterFind = new DiplomaDocumentRequest();
-//
-//        when(diplomaDocumentRequestService.findAll()).thenReturn(listOfDiplomaRequests);
-//
-//        listOfDiplomaRequests=diplomaDocumentRequestService.findAll();
-//
-///*
-//        DiplomaDocumentRequest newDiplomaRequest= diplomaDocumentRequestService.findById(id);
-//
-//        listOfDiplomaRequests.add(newDiplomaRequest);
-//*/
-//
-//
-//        Long id;
-//
-//        for(int i=0; i<listOfDiplomaRequests.size(); i++)
-//        {
-//            for(DiplomaDocumentRequest diploma: listOfDiplomaRequests) {
-//                assertNotNull(diploma);
-//                id = diploma.getId();
-//                assertEquals(id, listOfDiplomaRequests.get(i).getId());
-//            }
-//        }
-//
-//
-//    }
+        setup(diplomaDocumentRequest);
 
+        when(diplomaDocumentRequestRepository.findAll()).thenReturn(diplomaDocumentRequestList);
+
+        diplomaDocumentRequestList.add(diplomaDocumentRequest);
+
+        List<DiplomaDocumentRequest> findedList=diplomaDocumentRequestService.findAll();
+
+        //Assert
+        assertEquals(diplomaDocumentRequestList.get(0).getId(),findedList.get(0).getId());
+        assertEquals(diplomaDocumentRequestList.get(0).getDocumentName(),findedList.get(0).getDocumentName());
+        assertEquals(diplomaDocumentRequestList.get(0).getStudentName(),findedList.get(0).getStudentName());
+        assertEquals(diplomaDocumentRequestList.get(0).getCurrentYear(),findedList.get(0).getCurrentYear());
+        assertEquals(diplomaDocumentRequestList.get(0).getYearOfStudy(),findedList.get(0).getYearOfStudy());
+
+    }
 
 }
