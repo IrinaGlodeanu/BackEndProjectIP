@@ -13,4 +13,5 @@ public interface WithdrawalDocumentRequestService extends CrudService<Withdrawal
 
     void createPdf(List<String> list, String filePath) throws IOException, DocumentException;
 
+    WithdrawalDocumentRequest getStudentListByWithdrawalDocumnet(Long id);
 }

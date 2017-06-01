@@ -132,6 +132,16 @@ public class WithdrawalDocumentRequestController {
         return new ResponseEntity<Request>(request, HttpStatus.OK);
     }
 
+    @RequestMapping(value = "getStudent/{id}", method = RequestMethod.GET)
+    public ResponseEntity<WithdrawalDocumentRequest> getStudent(@PathVariable Long id) {
+        WithdrawalDocumentRequest withdrawalDocumentRequest = this.withdrawalDocumentRequestService.getStudentListByWithdrawalDocumnet(id);
+        if (withdrawalDocumentRequest.equals(null)) {
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        }
+        return new ResponseEntity<>(withdrawalDocumentRequest, HttpStatus.OK);
+
+    }
+
     /**
      * Generate the document for a particular student with the id received from PathVariable
      * @param id
@@ -147,17 +157,19 @@ public class WithdrawalDocumentRequestController {
             /* change */
         String fileName = "D:\\transportRequest.pdf";
 
+
         Student student = this.studentService.findById(Long.parseLong(id));
+        WithdrawalDocumentRequest withdrawalDocumentRequest = this.withdrawalDocumentRequestService.getStudentListByWithdrawalDocumnet(Long.parseLong(id));
         if( student != null){
 
             List<String> infoList = new ArrayList<String>();
             infoList.add(student.getFirstName() +" "+ student.getLastName() );
             infoList.add(student.getIdentityCardId());
             infoList.add("2");//nr random
-            infoList.add("2017");//an univ
-            infoList.add("2");
-            infoList.add("Ceva");
-            infoList.add("Ceva");
+            infoList.add(withdrawalDocumentRequest.getStudyYear().toString());//an univ
+            infoList.add(withdrawalDocumentRequest.getUniversityYear().toString());
+            infoList.add(withdrawalDocumentRequest.getTypeOfCourses());
+            infoList.add("cererea");
 
             this.withdrawalDocumentRequestService.createPdf(infoList, fileName);
 

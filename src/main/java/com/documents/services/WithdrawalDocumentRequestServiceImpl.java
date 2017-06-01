@@ -181,5 +181,11 @@ public class WithdrawalDocumentRequestServiceImpl implements WithdrawalDocumentR
 
     }
 
+    @Override
+    public WithdrawalDocumentRequest getStudentListByWithdrawalDocumnet(Long id) {
+        WithdrawalDocumentRequest withdrawalDocumentRequest = this.withdrawalDocumentRequestRepository.findByStudentId(id);
+        return withdrawalDocumentRequest;
+    }
+
 
 }
