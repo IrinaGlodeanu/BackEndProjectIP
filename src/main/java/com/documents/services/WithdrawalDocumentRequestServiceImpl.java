@@ -6,6 +6,9 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
+
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -18,6 +21,10 @@ import com.itextpdf.text.Paragraph;
 
 @Service
 public class WithdrawalDocumentRequestServiceImpl implements WithdrawalDocumentRequestService, Composable{
+
+    @PersistenceContext
+    private EntityManager entityManager;
+
     @Autowired
     private WithdrawalDocumentRequestRepository withdrawalDocumentRequestRepository;
 
@@ -45,7 +52,7 @@ public class WithdrawalDocumentRequestServiceImpl implements WithdrawalDocumentR
     }
 
     @Override
-    public void createPdf() throws IOException, DocumentException {
+    public void createPdf(List<String> infoList, String filePath) throws IOException, DocumentException {
 
 
         BufferedReader br = new BufferedReader(new FileReader("src\\main\\resources\\documentsAdditionalText.json"));
@@ -57,18 +64,17 @@ public class WithdrawalDocumentRequestServiceImpl implements WithdrawalDocumentR
 
         JSONObject obj = new JSONObject(jsonString);
         jsonKeys.add(obj.getJSONObject("withdrawal_document_request").getString("introduction"));
-        jsonKeys.add(obj.getJSONObject("withdrawal_document_request").getString("text1"));
-        jsonKeys.add(obj.getJSONObject("withdrawal_document_request").getString("text2"));
-        jsonKeys.add(obj.getJSONObject("withdrawal_document_request").getString("text3"));
-        jsonKeys.add(obj.getJSONObject("withdrawal_document_request").getString("text4"));
-        jsonKeys.add(obj.getJSONObject("withdrawal_document_request").getString("text5"));
-        jsonKeys.add(obj.getJSONObject("withdrawal_document_request").getString("text6"));
-        jsonKeys.add(obj.getJSONObject("withdrawal_document_request").getString("text7"));
+        jsonKeys.add(obj.getJSONObject("withdrawal_document_request").getString("text1") +  infoList.get(0));
+        jsonKeys.add(obj.getJSONObject("withdrawal_document_request").getString("text2") + infoList.get(1));
+        jsonKeys.add(obj.getJSONObject("withdrawal_document_request").getString("text3") + infoList.get(2));
+        jsonKeys.add(obj.getJSONObject("withdrawal_document_request").getString("text4") + infoList.get(3));
+        jsonKeys.add(obj.getJSONObject("withdrawal_document_request").getString("text5") + infoList.get(4));
+        jsonKeys.add(obj.getJSONObject("withdrawal_document_request").getString("text6") + infoList.get(5));
+        jsonKeys.add(obj.getJSONObject("withdrawal_document_request").getString("text7") + infoList.get(6));
         jsonKeys.add(obj.getJSONObject("withdrawal_document_request").getString("final"));
 
 
-
-        Document document = PdfUtility.initializeDocument();
+        Document document = PdfUtility.initializeDocument(filePath);
         PdfUtility.addTitle(document, jsonKeys.get(0));
 
 
@@ -174,5 +180,12 @@ public class WithdrawalDocumentRequestServiceImpl implements WithdrawalDocumentR
         PdfUtility.finalizeDocument(document);
 
     }
+
+    @Override
+    public WithdrawalDocumentRequest getStudentListByWithdrawalDocumnet(Long id) {
+        WithdrawalDocumentRequest withdrawalDocumentRequest = this.withdrawalDocumentRequestRepository.findByStudentId(id);
+        return withdrawalDocumentRequest;
+    }
+
 
 }

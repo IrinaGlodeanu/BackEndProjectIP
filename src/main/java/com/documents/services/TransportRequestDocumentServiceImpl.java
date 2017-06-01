@@ -6,10 +6,15 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
+
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.documents.models.Student;
 import com.documents.models.TransportRequestDocument;
 import com.documents.repositories.TransportRequestDocumentRepository;
 import com.itextpdf.text.Document;
@@ -18,6 +23,9 @@ import com.itextpdf.text.Paragraph;
 
 @Service
 public class TransportRequestDocumentServiceImpl implements TransportRequestDocumentService, Composable {
+
+    @PersistenceContext
+     private EntityManager entityManager;
 
     @Autowired
     private TransportRequestDocumentRepository transportRequestDocumentRepository;
@@ -47,9 +55,7 @@ public class TransportRequestDocumentServiceImpl implements TransportRequestDocu
         this.transportRequestDocumentRepository.delete(id);
     }
 
-    @Override
-    public void createPdf() throws IOException, DocumentException {
-
+    public void createPdf(List<String> infoList, String filePath) throws IOException, DocumentException {
 
         /**
          * We insert here the path where we can find the JSON
@@ -66,9 +72,9 @@ public class TransportRequestDocumentServiceImpl implements TransportRequestDocu
 
         JSONObject obj = new JSONObject(jsonString);
         jsonKeys.add(obj.getJSONObject("transport_request").getString("introduction"));
-        jsonKeys.add(obj.getJSONObject("transport_request").getString("text1"));
-        jsonKeys.add(obj.getJSONObject("transport_request").getString("text2"));
-        jsonKeys.add(obj.getJSONObject("transport_request").getString("text3"));
+        jsonKeys.add(obj.getJSONObject("transport_request").getString("text1") + infoList.get(0));
+        jsonKeys.add(obj.getJSONObject("transport_request").getString("text2") + infoList.get(1));
+        jsonKeys.add(obj.getJSONObject("transport_request").getString("text3") + infoList.get(2));
         jsonKeys.add(obj.getJSONObject("transport_request").getString("text4"));
         jsonKeys.add(obj.getJSONObject("transport_request").getString("text5"));
         jsonKeys.add(obj.getJSONObject("transport_request").getString("final1"));
@@ -80,7 +86,7 @@ public class TransportRequestDocumentServiceImpl implements TransportRequestDocu
         /**
          * Generate the document with the content extracted from Json
          */
-        Document document = PdfUtility.initializeDocument();
+        Document document = PdfUtility.initializeDocument(filePath);
         PdfUtility.addTitle(document, jsonKeys.get(0));
 
 
@@ -133,5 +139,20 @@ public class TransportRequestDocumentServiceImpl implements TransportRequestDocu
 
     }
 
+
+    /**
+     * Get all the students that have a transport request
+     * @return
+     */
+    public List<Student> getStudentListForTransport(){
+        Query query = entityManager.createNativeQuery(
+                "SELECT * FROM STUDENT s \n" +
+                        "    join request r on r.student_id = s.id\n" +
+                        "    join document d on d.id = r.document_id\n" +
+                        "    where d.id = 1;" , Student.class);
+        List resultList = query.getResultList();
+
+        return resultList;
+    }
 
 }

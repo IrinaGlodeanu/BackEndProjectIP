@@ -51,7 +51,7 @@ public class InterruptionRequestDocumentServiceImpl implements InterruptionReque
     }
 
     @Override
-    public void createPdf() throws IOException, DocumentException {
+    public void createPdf(List<String> infoList, String filePath) throws IOException, DocumentException {
 
         BufferedReader br = new BufferedReader(new FileReader("src\\main\\resources\\documentsAdditionalText.json"));
         List<String> jsonKeys = new ArrayList<>();
@@ -76,7 +76,7 @@ public class InterruptionRequestDocumentServiceImpl implements InterruptionReque
 
 
         // Generate the document with the content extracted from Json
-        Document document = PdfUtility.initializeDocument();
+        Document document = PdfUtility.initializeDocument(filePath);
         PdfUtility.addTitle(document, jsonKeys.get(0));
 
 

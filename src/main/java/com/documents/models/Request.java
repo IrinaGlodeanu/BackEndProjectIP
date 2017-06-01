@@ -2,7 +2,10 @@ package com.documents.models;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.TableGenerator;
 
 /**
  * @author Elena Hardon
@@ -11,7 +14,9 @@ import javax.persistence.Id;
 @Entity
 public class Request {
 
+    @TableGenerator(name = "Req_Gen", table = "ID_GEN", pkColumnName = "GEN_NAME", valueColumnName = "GEN_VAL",initialValue = 1, allocationSize = 100)
     @Id
+    @GeneratedValue(strategy = GenerationType.TABLE, generator = "Req_Gen")
     private Long id;
 
     @Column(name = "student_id")

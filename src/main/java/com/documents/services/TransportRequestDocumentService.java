@@ -1,9 +1,17 @@
 package com.documents.services;
 
-import com.documents.models.TransportRequestDocument;
+import java.io.IOException;
+import java.util.List;
 
-/**
- * Created by Simona on 12-May-17.
- */
+import com.documents.models.Student;
+import com.documents.models.TransportRequestDocument;
+import com.itextpdf.text.DocumentException;
+
+
 public interface TransportRequestDocumentService extends CrudService<TransportRequestDocument> {
+
+    List<Student> getStudentListForTransport();
+
+    void createPdf(List<String> list, String filePath) throws IOException, DocumentException;
 }
+
