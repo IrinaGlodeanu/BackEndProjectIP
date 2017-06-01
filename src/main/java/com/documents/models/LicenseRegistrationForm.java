@@ -41,9 +41,6 @@ public class LicenseRegistrationForm extends Document {
     @Column(name = "payment_receipt_redo_license_exam")
     private Integer paymentReceiptRedoExam;
 
-    //todo for the table
-    //todo the dates to be in the Date format
-
     @Column(name = "license_topic")
     private String licenseTopic;
 
