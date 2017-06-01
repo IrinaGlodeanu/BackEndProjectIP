@@ -102,11 +102,10 @@ public class ScolarSituationRequestController {
         ScolarSituationDocument scolarSituationDocument = new ScolarSituationDocument();
         scolarSituationDocument.setId(idScolarSituation + 1);
         idScolarSituation = idScolarSituation + 1;
+        scolarSituationDocument.setStudentId(student.getId().toString());
         scolarSituationDocument.setStudentName(student.getFirstName());
         scolarSituationDocument.setCurrentYear(scolarSituationInput.getCurrentYear());
         scolarSituationDocument.setYearOfStudy(scolarSituationInput.getYearOfStudy());
-        scolarSituationDocument.setStudentId(student.getId().toString());
-
 
         this.scolarSituationRequestService.save(scolarSituationDocument);
 
