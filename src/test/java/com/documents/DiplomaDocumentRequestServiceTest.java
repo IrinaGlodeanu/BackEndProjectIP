@@ -22,9 +22,6 @@ import com.documents.services.DiplomaDocumentRequestServiceImpl;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Created by pc on 5/25/2017.
- */
 @RunWith(MockitoJUnitRunner.class)
 public class DiplomaDocumentRequestServiceTest {
 
@@ -159,7 +156,7 @@ public class DiplomaDocumentRequestServiceTest {
     }
 
     @Test
-    public void functionality_diplomaRequest_findAll_should_return_true() throws Exception {
+    public void functionality_diplomaRequest_findAll_should_return_list_of_diplomaRequests() throws Exception {
         //Act
         List<DiplomaDocumentRequest> diplomaDocumentRequestList = new ArrayList<>();
         DiplomaDocumentRequest diplomaDocumentRequest = new DiplomaDocumentRequest();
