@@ -26,13 +26,13 @@ public class WithdrawalDocumentRequest extends Document{
     private String series;
 
     @Column(name = "number_ID_Card")
-    private Long numberIDCard;
+    private int numberIDCard;
 
     @Column(name = "study_year")
-    private Long studyYear;
+    private int studyYear;
 
     @Column(name = "university_year")
-    private Long universityYear;
+    private int universityYear;
 
     @Column(name = "type_of_courses")
     private String typeOfCourses;
@@ -50,10 +50,10 @@ public class WithdrawalDocumentRequest extends Document{
     private String seriesBAC;
 
     @Column(name = "number_BAC")
-    private Long numberBAC;
+    private int numberBAC;
 
     @Column(name = "number_sheet")
-    private Long numberSheet;
+    private int numberSheet;
 
     @Override
     public Long getId() {
@@ -84,27 +84,27 @@ public class WithdrawalDocumentRequest extends Document{
         this.series = series;
     }
 
-    public Long getNumberIDCard() {
+    public int getNumberIDCard() {
         return numberIDCard;
     }
 
-    public void setNumberIDCard(Long numberIDCard) {
+    public void setNumberIDCard(int numberIDCard) {
         this.numberIDCard = numberIDCard;
     }
 
-    public Long getStudyYear() {
+    public int getStudyYear() {
         return studyYear;
     }
 
-    public void setStudyYear(Long studyYear) {
+    public void setStudyYear(int studyYear) {
         this.studyYear = studyYear;
     }
 
-    public Long getUniversityYear() {
+    public int getUniversityYear() {
         return universityYear;
     }
 
-    public void setUniversityYear(Long universityYear) {
+    public void setUniversityYear(int universityYear) {
         this.universityYear = universityYear;
     }
 
@@ -148,19 +148,19 @@ public class WithdrawalDocumentRequest extends Document{
         this.seriesBAC = seriesBAC;
     }
 
-    public Long getNumberBAC() {
+    public int getNumberBAC() {
         return numberBAC;
     }
 
-    public void setNumberBAC(Long numberBAC) {
+    public void setNumberBAC(int numberBAC) {
         this.numberBAC = numberBAC;
     }
 
-    public Long getNumberSheet() {
+    public int getNumberSheet() {
         return numberSheet;
     }
 
-    public void setNumberSheet(Long numberSheet) {
+    public void setNumberSheet(int numberSheet) {
         this.numberSheet = numberSheet;
     }
 
