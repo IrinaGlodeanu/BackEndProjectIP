@@ -143,7 +143,7 @@ public class ScolarSituationServiceTest {
 
 
     @Test
-    public void functionality_scolarSituationDocumentRequest_deleteById_should_return_delete_scolarSituationDocumentRequest() throws Exception {
+    public void functionality_scolarSituationDocumentRequest_deleteById_should_delete_scolarSituationDocumentRequest() throws Exception {
 
         //Act
         ScolarSituationDocument scolarSituationDocument = new ScolarSituationDocument();

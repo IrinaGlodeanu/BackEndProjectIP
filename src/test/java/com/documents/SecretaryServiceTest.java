@@ -139,7 +139,7 @@ public class SecretaryServiceTest {
 
 
     @Test
-    public void functionality_secretary_deleteById_should_return_delete_secretary() throws Exception {
+    public void functionality_secretary_deleteById_should_delete_secretary() throws Exception {
 
         //Act
         Secretary secretary = new Secretary();
