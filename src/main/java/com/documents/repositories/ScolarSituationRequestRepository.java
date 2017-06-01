@@ -7,4 +7,6 @@ import com.documents.models.ScolarSituationDocument;
 
 @Repository
 public interface ScolarSituationRequestRepository extends CrudRepository<ScolarSituationDocument, Long> {
+
+    ScolarSituationDocument findByStudentId(Long id);
 }

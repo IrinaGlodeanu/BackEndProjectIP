@@ -6,11 +6,16 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
+
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.documents.models.ScolarSituationDocument;
+import com.documents.models.Student;
 import com.documents.repositories.ScolarSituationRequestRepository;
 import com.itextpdf.text.Document;
 import com.itextpdf.text.DocumentException;
@@ -18,6 +23,9 @@ import com.itextpdf.text.Paragraph;
 
 @Service
 public class ScolarSituationRequestServiceImpl implements ScolarSituationRequestService, Composable {
+
+    @PersistenceContext
+    private EntityManager entityManager;
 
     @Autowired
     ScolarSituationRequestRepository scolarSituationRequestRepository;
@@ -95,6 +103,11 @@ public class ScolarSituationRequestServiceImpl implements ScolarSituationRequest
 
     }
 
+    @Override
+    public ScolarSituationDocument getStudentListByScolarSituationDocument(Long id) {
 
+        ScolarSituationDocument scolarSituationDocument = this.scolarSituationRequestRepository.findByStudentId(id);
+        return scolarSituationDocument;
+    }
 
 }
