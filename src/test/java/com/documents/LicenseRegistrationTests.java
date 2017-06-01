@@ -99,14 +99,14 @@ public class LicenseRegistrationTests {
     public void behavioural_licenseRequest_findById_should_return_true() throws Exception {
 
         //Act
-        LicenseRegistrationForm licenseRegistrationFormToSave = new LicenseRegistrationForm();
+        LicenseRegistrationForm licenseRegistrationFormToFind = new LicenseRegistrationForm();
 
-        when(licenseRegistrationFormRepository.findOne(any(long.class))).thenReturn(licenseRegistrationFormToSave);
+        when(licenseRegistrationFormRepository.findOne(any(long.class))).thenReturn(licenseRegistrationFormToFind);
 
-        licenseRegistrationFormToSave = licenseRegistrationFormServiceImpl.findById((long) 123);
+        licenseRegistrationFormToFind = licenseRegistrationFormServiceImpl.findById((long) 123);
 
         //Assert
-        assertNotNull(licenseRegistrationFormToSave);
+        assertNotNull(licenseRegistrationFormToFind);
     }
 
     @Test
@@ -119,18 +119,18 @@ public class LicenseRegistrationTests {
 
         when(licenseRegistrationFormRepository.findOne(any(long.class))).thenReturn(licenseRegistrationFormToFind);
 
-        LicenseRegistrationForm findedLicenseRegForm = licenseRegistrationFormServiceImpl.findById((long) 3);
+        LicenseRegistrationForm foundLicenseRegForm = licenseRegistrationFormServiceImpl.findById((long) 3);
 
         //Assert
-        assertEquals(Long.valueOf(3), findedLicenseRegForm.getId());
-        assertEquals("Document_Name", findedLicenseRegForm.getDocumentName());
-        assertEquals("Student_Name", findedLicenseRegForm.getStudentName());
-        assertEquals("123412123123", findedLicenseRegForm.getMantricolNumber());
-        assertEquals(Integer.valueOf(2018), findedLicenseRegForm.getGraduationYear());
-        assertEquals("12-June-2015", findedLicenseRegForm.getDateReceiptLinguisticCompetence());
-        assertEquals(Integer.valueOf(300), findedLicenseRegForm.getPaymentReceiptLinguisticCompetence());
-        assertEquals("14-August-2016", findedLicenseRegForm.getDateReceiptRedoExam());
-        assertEquals(Integer.valueOf(300), findedLicenseRegForm.getPaymentReceiptRedoExam());
+        assertEquals(Long.valueOf(3), foundLicenseRegForm.getId());
+        assertEquals("Document_Name", foundLicenseRegForm.getDocumentName());
+        assertEquals("Student_Name", foundLicenseRegForm.getStudentName());
+        assertEquals("123412123123", foundLicenseRegForm.getMantricolNumber());
+        assertEquals(Integer.valueOf(2018), foundLicenseRegForm.getGraduationYear());
+        assertEquals("12-June-2015", foundLicenseRegForm.getDateReceiptLinguisticCompetence());
+        assertEquals(Integer.valueOf(300), foundLicenseRegForm.getPaymentReceiptLinguisticCompetence());
+        assertEquals("14-August-2016", foundLicenseRegForm.getDateReceiptRedoExam());
+        assertEquals(Integer.valueOf(300), foundLicenseRegForm.getPaymentReceiptRedoExam());
 
     }
 
@@ -144,16 +144,16 @@ public class LicenseRegistrationTests {
 
         licenseRegistrationFormServiceImpl.delete(licenseRegistrationForm.getId());
 
-        LicenseRegistrationForm findedLicenseRegistrationForm = licenseRegistrationFormServiceImpl.findById((long) 3);
+        LicenseRegistrationForm foundLicenseRegistrationForm = licenseRegistrationFormServiceImpl.findById((long) 3);
 
         //Assert
-        assertNull(findedLicenseRegistrationForm);
+        assertNull(foundLicenseRegistrationForm);
 
     }
 
 
     @Test
-    public void functionality_licenseRequest_deleteById_should_return_delete_licenseRequest() throws Exception {
+    public void functionality_licenseRequest_deleteById_should_delete_licenseRequest() throws Exception {
 
         //Act
         LicenseRegistrationForm licenseRegistrationForm = new LicenseRegistrationForm();
@@ -179,11 +179,11 @@ public class LicenseRegistrationTests {
 
         licenseRegistrationForms.add(licenseRegistrationForm);
 
-        List<LicenseRegistrationForm> findedForms;
-        findedForms = licenseRegistrationFormServiceImpl.findAll();
+        List<LicenseRegistrationForm> foundForms;
+        foundForms = licenseRegistrationFormServiceImpl.findAll();
 
         //Assert
-        assertNotNull(findedForms);
+        assertNotNull(foundForms);
 
     }
 
@@ -201,19 +201,19 @@ public class LicenseRegistrationTests {
 
         licenseRegistrationForms.add(licenseRegistrationForm);
 
-        List<LicenseRegistrationForm> findedForms;
-        findedForms = licenseRegistrationFormServiceImpl.findAll();
+        List<LicenseRegistrationForm> foundForms;
+        foundForms = licenseRegistrationFormServiceImpl.findAll();
 
         //Assert
-        assertEquals(licenseRegistrationForms.get(0).getId(), findedForms.get(0).getId());
-        assertEquals(licenseRegistrationForms.get(0).getDocumentName(), findedForms.get(0).getDocumentName());
-        assertEquals(licenseRegistrationForms.get(0).getStudentName(), findedForms.get(0).getStudentName());
-        assertEquals(licenseRegistrationForms.get(0).getMantricolNumber(), findedForms.get(0).getMantricolNumber());
-        assertEquals(licenseRegistrationForms.get(0).getGraduationYear(), findedForms.get(0).getGraduationYear());
-        assertEquals(licenseRegistrationForms.get(0).getDateReceiptLinguisticCompetence(), findedForms.get(0).getDateReceiptLinguisticCompetence());
-        assertEquals(licenseRegistrationForms.get(0).getPaymentReceiptLinguisticCompetence(), findedForms.get(0).getPaymentReceiptLinguisticCompetence());
-        assertEquals(licenseRegistrationForms.get(0).getDateReceiptRedoExam(), findedForms.get(0).getDateReceiptRedoExam());
-        assertEquals(licenseRegistrationForms.get(0).getPaymentReceiptRedoExam(), findedForms.get(0).getPaymentReceiptRedoExam());
+        assertEquals(licenseRegistrationForms.get(0).getId(), foundForms.get(0).getId());
+        assertEquals(licenseRegistrationForms.get(0).getDocumentName(), foundForms.get(0).getDocumentName());
+        assertEquals(licenseRegistrationForms.get(0).getStudentName(), foundForms.get(0).getStudentName());
+        assertEquals(licenseRegistrationForms.get(0).getMantricolNumber(), foundForms.get(0).getMantricolNumber());
+        assertEquals(licenseRegistrationForms.get(0).getGraduationYear(), foundForms.get(0).getGraduationYear());
+        assertEquals(licenseRegistrationForms.get(0).getDateReceiptLinguisticCompetence(), foundForms.get(0).getDateReceiptLinguisticCompetence());
+        assertEquals(licenseRegistrationForms.get(0).getPaymentReceiptLinguisticCompetence(), foundForms.get(0).getPaymentReceiptLinguisticCompetence());
+        assertEquals(licenseRegistrationForms.get(0).getDateReceiptRedoExam(), foundForms.get(0).getDateReceiptRedoExam());
+        assertEquals(licenseRegistrationForms.get(0).getPaymentReceiptRedoExam(), foundForms.get(0).getPaymentReceiptRedoExam());
 
     }
 
