@@ -105,13 +105,13 @@ public class TransportRequestDocumentRequestServiceTest {
 
         when(transportRequestDocumentRepository.findOne(any(long.class))).thenReturn(transportRequestDocumentToFind);
 
-        TransportRequestDocument findedTransportRequestDocument = transportRequestDocumentServiceImpl.findById((long) 3);
+        TransportRequestDocument foundTransportRequestDocument = transportRequestDocumentServiceImpl.findById((long) 3);
 
-        assertEquals(Long.valueOf(23), findedTransportRequestDocument.getId());
-        assertEquals("Transport", findedTransportRequestDocument.getDocumentName());
-        assertEquals("Ionica", findedTransportRequestDocument.getStudentName());
-        assertEquals("1234", findedTransportRequestDocument.getNrSeriesId());
-        assertEquals("2", findedTransportRequestDocument.getYearOfStudy());
+        assertEquals(Long.valueOf(23), foundTransportRequestDocument.getId());
+        assertEquals("Transport", foundTransportRequestDocument.getDocumentName());
+        assertEquals("Ionica", foundTransportRequestDocument.getStudentName());
+        assertEquals("1234", foundTransportRequestDocument.getNrSeriesId());
+        assertEquals("2", foundTransportRequestDocument.getYearOfStudy());
 
     }
 
@@ -125,9 +125,9 @@ public class TransportRequestDocumentRequestServiceTest {
 
         transportRequestDocumentServiceImpl.delete(transportRequestDocument.getId());
 
-        TransportRequestDocument findedTransportRequestDocument = transportRequestDocumentServiceImpl.findById((long) 3);
+        TransportRequestDocument foundTransportRequestDocument = transportRequestDocumentServiceImpl.findById((long) 3);
 
-        assertNull(findedTransportRequestDocument);
+        assertNull(foundTransportRequestDocument);
 
     }
 
@@ -159,11 +159,11 @@ public class TransportRequestDocumentRequestServiceTest {
 
         transportRequestDocuments.add(transportRequestDocument);
 
-        List<TransportRequestDocument> findedForms;
-        findedForms = transportRequestDocumentServiceImpl.findAll();
+        List<TransportRequestDocument> foundForms;
+        foundForms = transportRequestDocumentServiceImpl.findAll();
 
         //Assert
-        assertNotNull(findedForms);
+        assertNotNull(foundForms);
 
     }
 
@@ -180,13 +180,13 @@ public class TransportRequestDocumentRequestServiceTest {
 
         transportRequestDocuments.add(transportRequestDocument);
 
-        List<TransportRequestDocument> findedForms;
-        findedForms = transportRequestDocumentServiceImpl.findAll();
+        List<TransportRequestDocument> foundForms;
+        foundForms = transportRequestDocumentServiceImpl.findAll();
 
-        assertEquals(transportRequestDocuments.get(0).getId(), findedForms.get(0).getId());
-        assertEquals(transportRequestDocuments.get(0).getDocumentName(), findedForms.get(0).getDocumentName());
-        assertEquals(transportRequestDocuments.get(0).getStudentName(), findedForms.get(0).getStudentName());
-        assertEquals(transportRequestDocuments.get(0).getYearOfStudy(), findedForms.get(0).getYearOfStudy());
+        assertEquals(transportRequestDocuments.get(0).getId(), foundForms.get(0).getId());
+        assertEquals(transportRequestDocuments.get(0).getDocumentName(), foundForms.get(0).getDocumentName());
+        assertEquals(transportRequestDocuments.get(0).getStudentName(), foundForms.get(0).getStudentName());
+        assertEquals(transportRequestDocuments.get(0).getYearOfStudy(), foundForms.get(0).getYearOfStudy());
 
     }
 

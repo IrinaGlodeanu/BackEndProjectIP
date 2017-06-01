@@ -121,14 +121,14 @@ public class WithdrawalDocumentRequestServiceTest {
 
         withdrawalDocumentRequestServiceImpl.delete(withdrawalDocumentRequest.getId());
 
-        WithdrawalDocumentRequest findedWithdrawalDocumentRegistrationForm = withdrawalDocumentRequestServiceImpl.findById((long) 3);
+        WithdrawalDocumentRequest foundWithdrawalDocumentRegistrationForm = withdrawalDocumentRequestServiceImpl.findById((long) 3);
 
-        assertNull(findedWithdrawalDocumentRegistrationForm);
+        assertNull(foundWithdrawalDocumentRegistrationForm);
 
     }
 
     @Test
-    public void functionality_withdrawalDocumentRequest_deleteById_should_return_delete_withdrawalDocument() throws Exception {
+    public void functionality_withdrawalDocumentRequest_deleteById_should_delete_withdrawalDocument() throws Exception {
 
         //Act
         WithdrawalDocumentRequest withdrawalDocumentRequest = new WithdrawalDocumentRequest();
@@ -153,10 +153,10 @@ public class WithdrawalDocumentRequestServiceTest {
 
         withdrawalDocumentRequests.add(withdrawalDocumentRequest);
 
-        List<WithdrawalDocumentRequest> findedForms;
-        findedForms = withdrawalDocumentRequestServiceImpl.findAll();
+        List<WithdrawalDocumentRequest> foundForms;
+        foundForms = withdrawalDocumentRequestServiceImpl.findAll();
 
-        Assert.assertNotNull(findedForms);
+        Assert.assertNotNull(foundForms);
 
     }
 
@@ -173,23 +173,23 @@ public class WithdrawalDocumentRequestServiceTest {
 
         withdrawalDocumentRequests.add(withdrawalDocumentRequest);
 
-        List<WithdrawalDocumentRequest> findedForms;
-        findedForms = withdrawalDocumentRequestServiceImpl.findAll();
+        List<WithdrawalDocumentRequest> foundForms;
+        foundForms = withdrawalDocumentRequestServiceImpl.findAll();
 
-        assertEquals(withdrawalDocumentRequests.get(0).getId(), findedForms.get(0).getId());
-        assertEquals(withdrawalDocumentRequests.get(0).getDocumentName(), findedForms.get(0).getDocumentName());
-        assertEquals(withdrawalDocumentRequests.get(0).getStudentId(), findedForms.get(0).getStudentId());
-        assertEquals(withdrawalDocumentRequests.get(0).getSeries(), findedForms.get(0).getSeries());
-        assertEquals(withdrawalDocumentRequests.get(0).getNumberIDCard(), findedForms.get(0).getNumberIDCard());
-        assertEquals(withdrawalDocumentRequests.get(0).getStudyYear(), findedForms.get(0).getStudyYear());
-        assertEquals(withdrawalDocumentRequests.get(0).getUniversityYear(), findedForms.get(0).getUniversityYear());
-        assertEquals(withdrawalDocumentRequests.get(0).getTypeOfCourses(), findedForms.get(0).getTypeOfCourses());
-        assertEquals(withdrawalDocumentRequests.get(0).getApproveReason(), findedForms.get(0).getApproveReason());
-        assertEquals(withdrawalDocumentRequests.get(0).getDate(), findedForms.get(0).getDate());
-        assertEquals(withdrawalDocumentRequests.get(0).getSignature(), findedForms.get(0).getSignature());
-        assertEquals(withdrawalDocumentRequests.get(0).getSeriesBAC(), findedForms.get(0).getSeriesBAC());
-        assertEquals(withdrawalDocumentRequests.get(0).getNumberBAC(), findedForms.get(0).getNumberBAC());
-        assertEquals(withdrawalDocumentRequests.get(0).getNumberSheet(), findedForms.get(0).getNumberSheet());
+        assertEquals(withdrawalDocumentRequests.get(0).getId(), foundForms.get(0).getId());
+        assertEquals(withdrawalDocumentRequests.get(0).getDocumentName(), foundForms.get(0).getDocumentName());
+        assertEquals(withdrawalDocumentRequests.get(0).getStudentId(), foundForms.get(0).getStudentId());
+        assertEquals(withdrawalDocumentRequests.get(0).getSeries(), foundForms.get(0).getSeries());
+        assertEquals(withdrawalDocumentRequests.get(0).getNumberIDCard(), foundForms.get(0).getNumberIDCard());
+        assertEquals(withdrawalDocumentRequests.get(0).getStudyYear(), foundForms.get(0).getStudyYear());
+        assertEquals(withdrawalDocumentRequests.get(0).getUniversityYear(), foundForms.get(0).getUniversityYear());
+        assertEquals(withdrawalDocumentRequests.get(0).getTypeOfCourses(), foundForms.get(0).getTypeOfCourses());
+        assertEquals(withdrawalDocumentRequests.get(0).getApproveReason(), foundForms.get(0).getApproveReason());
+        assertEquals(withdrawalDocumentRequests.get(0).getDate(), foundForms.get(0).getDate());
+        assertEquals(withdrawalDocumentRequests.get(0).getSignature(), foundForms.get(0).getSignature());
+        assertEquals(withdrawalDocumentRequests.get(0).getSeriesBAC(), foundForms.get(0).getSeriesBAC());
+        assertEquals(withdrawalDocumentRequests.get(0).getNumberBAC(), foundForms.get(0).getNumberBAC());
+        assertEquals(withdrawalDocumentRequests.get(0).getNumberSheet(), foundForms.get(0).getNumberSheet());
 
     }
 
