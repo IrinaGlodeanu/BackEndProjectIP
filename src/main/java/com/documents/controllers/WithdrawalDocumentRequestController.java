@@ -111,8 +111,13 @@ public class WithdrawalDocumentRequestController {
         idWithdrawal = idWithdrawal + 1;
         withdrawalDocumentRequest.setStudentId(student.getId());
         withdrawalDocumentRequest.setSeries(withdrawalInput.getNrSeriesId());
-        withdrawalDocumentRequest.setUniversityYear(Long.valueOf(withdrawalInput.getYearOfStudy()));
-        withdrawalDocumentRequest.setStudyYear(Long.valueOf(withdrawalInput.getCurrentYear()));
+
+        //anul de stiud
+        String yearStudy = withdrawalInput.getCurrentYear();
+        withdrawalDocumentRequest.setUniversityYear(Long.valueOf(yearStudy.substring(yearStudy.length() - 1)));
+
+        //anul in care e
+        withdrawalDocumentRequest.setStudyYear(Long.valueOf(withdrawalInput.getYearOfStudy()));
         withdrawalDocumentRequest.setTypeOfCourses(withdrawalInput.getCourse());
 
         this.withdrawalDocumentRequestService.save(withdrawalDocumentRequest);
@@ -185,6 +190,5 @@ public class WithdrawalDocumentRequestController {
         return responseBuilder.build();
 
     }
-
 
 }

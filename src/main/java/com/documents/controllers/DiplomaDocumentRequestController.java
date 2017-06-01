@@ -62,4 +62,6 @@ public class DiplomaDocumentRequestController {
         DiplomaDocumentRequest newDoc = diplomaDocumentRequestService.save(student);
         return new ResponseEntity<DiplomaDocumentRequest>(newDoc, HttpStatus.OK);
     }
+
+
 }

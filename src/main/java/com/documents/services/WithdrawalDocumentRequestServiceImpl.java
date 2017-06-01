@@ -6,6 +6,9 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
+
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -18,6 +21,10 @@ import com.itextpdf.text.Paragraph;
 
 @Service
 public class WithdrawalDocumentRequestServiceImpl implements WithdrawalDocumentRequestService, Composable{
+
+    @PersistenceContext
+    private EntityManager entityManager;
+
     @Autowired
     private WithdrawalDocumentRequestRepository withdrawalDocumentRequestRepository;
 
@@ -173,5 +180,6 @@ public class WithdrawalDocumentRequestServiceImpl implements WithdrawalDocumentR
         PdfUtility.finalizeDocument(document);
 
     }
+
 
 }
