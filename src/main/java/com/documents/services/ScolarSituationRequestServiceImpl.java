@@ -22,11 +22,10 @@ import com.itextpdf.text.Paragraph;
 @Service
 public class ScolarSituationRequestServiceImpl implements ScolarSituationRequestService, Composable {
 
-    @PersistenceContext
-    private EntityManager entityManager;
-
     @Autowired
     ScolarSituationRequestRepository scolarSituationRequestRepository;
+    @PersistenceContext
+    private EntityManager entityManager;
 
     @Override
     public ScolarSituationDocument save(ScolarSituationDocument entity) {
@@ -69,9 +68,9 @@ public class ScolarSituationRequestServiceImpl implements ScolarSituationRequest
 
         JSONObject obj = new JSONObject(jsonString);
         jsonKeys.add(obj.getJSONObject("scolar_situation_request").getString("introduction"));
-        jsonKeys.add(obj.getJSONObject("scolar_situation_request").getString("text1"));
-        jsonKeys.add(obj.getJSONObject("scolar_situation_request").getString("text2"));
-        jsonKeys.add(obj.getJSONObject("scolar_situation_request").getString("text3"));
+        jsonKeys.add(obj.getJSONObject("scolar_situation_request").getString("text1") + infoList.get(0));
+        jsonKeys.add(obj.getJSONObject("scolar_situation_request").getString("text2") + infoList.get(2));
+        jsonKeys.add(obj.getJSONObject("scolar_situation_request").getString("text3") + infoList.get(1));
         jsonKeys.add(obj.getJSONObject("scolar_situation_request").getString("text4"));
         jsonKeys.add(obj.getJSONObject("scolar_situation_request").getString("final"));
 
@@ -104,7 +103,7 @@ public class ScolarSituationRequestServiceImpl implements ScolarSituationRequest
     @Override
     public ScolarSituationDocument getStudentListByScolarSituationDocument(Long id) {
 
-        ScolarSituationDocument scolarSituationDocument = this.scolarSituationRequestRepository.findByStudentId(id);
+        ScolarSituationDocument scolarSituationDocument = this.scolarSituationRequestRepository.findByStudentId(id.toString());
         return scolarSituationDocument;
     }
 
