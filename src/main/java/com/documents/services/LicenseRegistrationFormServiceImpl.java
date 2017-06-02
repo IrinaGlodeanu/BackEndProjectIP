@@ -3,6 +3,7 @@ package com.documents.services;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -72,18 +73,18 @@ public class LicenseRegistrationFormServiceImpl implements LicenseRegistrationFo
         jsonKeys.add(obj.getJSONObject("license_register_request").getString("head3"));
         jsonKeys.add(obj.getJSONObject("license_register_request").getString("head4"));
         jsonKeys.add(obj.getJSONObject("license_register_request").getString("introduction"));
-        jsonKeys.add(obj.getJSONObject("license_register_request").getString("text1"));
-        jsonKeys.add(obj.getJSONObject("license_register_request").getString("text2"));
-        jsonKeys.add(obj.getJSONObject("license_register_request").getString("text3"));
-        jsonKeys.add(obj.getJSONObject("license_register_request").getString("text4"));
-        jsonKeys.add(obj.getJSONObject("license_register_request").getString("text5"));
-        jsonKeys.add(obj.getJSONObject("license_register_request").getString("text6"));
-        jsonKeys.add(obj.getJSONObject("license_register_request").getString("text7"));
-        jsonKeys.add(obj.getJSONObject("license_register_request").getString("text8"));
-        jsonKeys.add(obj.getJSONObject("license_register_request").getString("text9"));
-        jsonKeys.add(obj.getJSONObject("license_register_request").getString("text10"));
-        jsonKeys.add(obj.getJSONObject("license_register_request").getString("text11"));
-        jsonKeys.add(obj.getJSONObject("license_register_request").getString("text12"));
+        jsonKeys.add(obj.getJSONObject("license_register_request").getString("text1") + infoList.get(0));
+        jsonKeys.add(obj.getJSONObject("license_register_request").getString("text2") + infoList.get(1));
+        jsonKeys.add(obj.getJSONObject("license_register_request").getString("text3") + infoList.get(2));
+        jsonKeys.add(obj.getJSONObject("license_register_request").getString("text4") + infoList.get(3));
+        jsonKeys.add(obj.getJSONObject("license_register_request").getString("text5") + infoList.get(4));
+        jsonKeys.add(obj.getJSONObject("license_register_request").getString("text6") + infoList.get(5));
+        jsonKeys.add(obj.getJSONObject("license_register_request").getString("text7") + infoList.get(6));
+        jsonKeys.add(obj.getJSONObject("license_register_request").getString("text8") + infoList.get(7));
+        jsonKeys.add(obj.getJSONObject("license_register_request").getString("text9") + infoList.get(8));
+        jsonKeys.add(obj.getJSONObject("license_register_request").getString("text10") + infoList.get(9));
+        jsonKeys.add(obj.getJSONObject("license_register_request").getString("text11") + infoList.get(10));
+        jsonKeys.add(obj.getJSONObject("license_register_request").getString("text12") + infoList.get(11));
         jsonKeys.add(obj.getJSONObject("license_register_request").getString("text13"));
         jsonKeys.add(obj.getJSONObject("license_register_request").getString("final"));
 
