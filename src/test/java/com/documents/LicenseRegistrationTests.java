@@ -270,6 +270,7 @@ public class LicenseRegistrationTests {
 
         licenseRegistrationFormServiceImpl.createPdf(infoList, pdfPath);
 
+
         PdfReader pdfReader = new PdfReader(pdfPath);
         String content = PdfTextExtractor.getTextFromPage( pdfReader, 1 );
         pdfReader.close();
