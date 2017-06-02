@@ -85,14 +85,14 @@ public class RequestServicesTests {
     public void behavioural_request_findById_should_return_true() throws Exception {
 
         //Act
-        Request requestToSave = new Request();
+        Request requestToFind = new Request();
 
-        when(requestRepository.findOne(any(long.class))).thenReturn(requestToSave);
+        when(requestRepository.findOne(any(long.class))).thenReturn(requestToFind);
 
-        requestToSave = requestServiceImpl.findById((long) 123);
+        requestToFind = requestServiceImpl.findById((long) 123);
 
         //Assert
-        assertNotNull(requestToSave);
+        assertNotNull(requestToFind);
     }
 
     @Test

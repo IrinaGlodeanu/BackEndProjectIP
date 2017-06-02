@@ -1,8 +1,15 @@
 package com.documents;
 
-import com.documents.models.ScolarSituationDocument;
-import com.documents.repositories.ScolarSituationRequestRepository;
-import com.documents.services.ScolarSituationRequestServiceImpl;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertNull;
+import static org.mockito.Matchers.any;
+import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
+
+import java.util.ArrayList;
+import java.util.List;
+
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -11,15 +18,9 @@ import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 import org.mockito.runners.MockitoJUnitRunner;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertNull;
-import static org.mockito.Matchers.any;
-import static org.mockito.Mockito.verify;
-import static org.mockito.Mockito.when;
+import com.documents.models.ScolarSituationDocument;
+import com.documents.repositories.ScolarSituationRequestRepository;
+import com.documents.services.ScolarSituationRequestServiceImpl;
 
 
 @RunWith(MockitoJUnitRunner.class)
@@ -112,15 +113,15 @@ public class ScolarSituationServiceTest {
 
         when(scolarSituationRequestRepository.findOne(any(long.class))).thenReturn(scolarSituationDocumentToFind);
 
-        ScolarSituationDocument findedScolarSitDoc = scolarSituationRequestServiceImpl.findById((long) 3);
+        ScolarSituationDocument foundScolarSitDoc = scolarSituationRequestServiceImpl.findById((long) 3);
 
         //Assert
-        assertEquals(Long.valueOf(3), findedScolarSitDoc.getId());
-        assertEquals("Document_Name", findedScolarSitDoc.getDocumentName());
-        assertEquals("Student_Name", findedScolarSitDoc.getStudentName());
-        assertEquals(Integer.valueOf(2017), findedScolarSitDoc.getCurrentYear());
-        assertEquals(Integer.valueOf(2), findedScolarSitDoc.getYearOfStudy());
-        assertEquals("Yes", findedScolarSitDoc.getHasBroughtReceipt());
+        assertEquals(Long.valueOf(3), foundScolarSitDoc.getId());
+        assertEquals("Document_Name", foundScolarSitDoc.getDocumentName());
+        assertEquals("Student_Name", foundScolarSitDoc.getStudentName());
+        assertEquals(Integer.valueOf(2017), foundScolarSitDoc.getCurrentYear());
+        assertEquals(Integer.valueOf(2), foundScolarSitDoc.getYearOfStudy());
+        assertEquals("Yes", foundScolarSitDoc.getHasBroughtReceipt());
 
     }
 
@@ -134,10 +135,10 @@ public class ScolarSituationServiceTest {
 
         scolarSituationRequestServiceImpl.delete(scolarSituationDocument.getId());
 
-        ScolarSituationDocument findedScolarSituationDocument = scolarSituationRequestServiceImpl.findById((long) 3);
+        ScolarSituationDocument foundedScolarSituationDocument = scolarSituationRequestServiceImpl.findById((long) 3);
 
         //Assert
-        assertNull(findedScolarSituationDocument);
+        assertNull(foundedScolarSituationDocument);
 
     }
 
@@ -169,11 +170,11 @@ public class ScolarSituationServiceTest {
 
         scolarSituationDocuments.add(scolarSituationDocument);
 
-        List<ScolarSituationDocument> findedScolarSituationDocuments;
-        findedScolarSituationDocuments = scolarSituationRequestServiceImpl.findAll();
+        List<ScolarSituationDocument> foundedScolarSituationDocuments;
+        foundedScolarSituationDocuments = scolarSituationRequestServiceImpl.findAll();
 
         //Assert
-        assertNotNull(findedScolarSituationDocuments);
+        assertNotNull(foundedScolarSituationDocuments);
 
     }
 
@@ -191,16 +192,16 @@ public class ScolarSituationServiceTest {
 
         scolarSituationDocuments.add(scolarSituationDocument);
 
-        List<ScolarSituationDocument> findedScolarSituationDocuments;
-        findedScolarSituationDocuments = scolarSituationRequestServiceImpl.findAll();
+        List<ScolarSituationDocument> foundedScolarSituationDocuments;
+        foundedScolarSituationDocuments = scolarSituationRequestServiceImpl.findAll();
 
         //Assert
-        assertEquals(scolarSituationDocuments.get(0).getId(), findedScolarSituationDocuments.get(0).getId());
-        assertEquals(scolarSituationDocuments.get(0).getDocumentName(), findedScolarSituationDocuments.get(0).getDocumentName());
-        assertEquals(scolarSituationDocuments.get(0).getStudentName(), findedScolarSituationDocuments.get(0).getStudentName());
-        assertEquals(scolarSituationDocuments.get(0).getCurrentYear(), findedScolarSituationDocuments.get(0).getCurrentYear());
-        assertEquals(scolarSituationDocuments.get(0).getYearOfStudy(), findedScolarSituationDocuments.get(0).getYearOfStudy());
-        assertEquals(scolarSituationDocuments.get(0).getHasBroughtReceipt(), findedScolarSituationDocuments.get(0).getHasBroughtReceipt());
+        assertEquals(scolarSituationDocuments.get(0).getId(), foundedScolarSituationDocuments.get(0).getId());
+        assertEquals(scolarSituationDocuments.get(0).getDocumentName(), foundedScolarSituationDocuments.get(0).getDocumentName());
+        assertEquals(scolarSituationDocuments.get(0).getStudentName(), foundedScolarSituationDocuments.get(0).getStudentName());
+        assertEquals(scolarSituationDocuments.get(0).getCurrentYear(), foundedScolarSituationDocuments.get(0).getCurrentYear());
+        assertEquals(scolarSituationDocuments.get(0).getYearOfStudy(), foundedScolarSituationDocuments.get(0).getYearOfStudy());
+        assertEquals(scolarSituationDocuments.get(0).getHasBroughtReceipt(), foundedScolarSituationDocuments.get(0).getHasBroughtReceipt());
 
     }
 }
