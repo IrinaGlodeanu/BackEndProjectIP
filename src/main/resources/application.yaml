@@ -6,10 +6,10 @@ server:
 # Spring properties
 spring:
   application:
-     name: postgres # Service name
+     name: docs # Service name
   datasource:
-    url: jdbc:postgresql://localhost:5432/postgres
-    username: postgres
+    url: jdbc:postgresql://localhost:5432/docs 
+    username: docs
     password: admin
   jpa:
     hibernate:
