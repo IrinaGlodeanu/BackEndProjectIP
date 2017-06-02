@@ -246,10 +246,6 @@ public class LicenseRegistrationTests {
         licenseRegistrationFormServiceImpl.createPdf(infoList, "src\\main\\resources\\test.pdf");
 
         assertEquals(true, new File("src\\main\\resources\\test.pdf").exists());
-
-        //licenseRegistrationFormServiceImpl.createPdf(infoList, "D:/test.pdf");
-
-        //assertEquals(true, new File("D:/test.pdf").exists());
     }
 
     @Test
@@ -269,26 +265,18 @@ public class LicenseRegistrationTests {
         infoList.add(" Cine ma primeste");
         infoList.add("10-06-2018");
 
-        licenseRegistrationFormServiceImpl.createPdf(infoList, "src\\main\\resources\\test.pdf");
+        String pdfPath = "src\\main\\resources\\test.pdf";
+        String jsonPath = "src\\main\\resources\\documentsAdditionalText.json";
 
-        assertEquals(true, new File("src\\main\\resources\\test.pdf").exists());
+        licenseRegistrationFormServiceImpl.createPdf(infoList, pdfPath);
 
-        PdfReader pdfReader = new PdfReader("src\\main\\resources\\test.pdf");
-
+        PdfReader pdfReader = new PdfReader(pdfPath);
         String content = PdfTextExtractor.getTextFromPage( pdfReader, 1 );
-
         pdfReader.close();
 
-        BufferedReader br = new BufferedReader(new FileReader("src\\main\\resources\\documentsAdditionalText.json"));
-        String jsonString;
+        JSONObject obj = new JSONObject(PdfUtility.initiliazeJson(new BufferedReader(new FileReader(jsonPath))));
 
-        jsonString = PdfUtility.initiliazeJson(br);
-
-        JSONObject obj = new JSONObject(jsonString);
-
-        String testString;
-
-        testString = obj.getJSONObject("license_register_request").getString("head1");
+        String testString = obj.getJSONObject("license_register_request").getString("head1");
         testString += obj.getJSONObject("license_register_request").getString("head2");
         testString += obj.getJSONObject("license_register_request").getString("head3");
         testString += obj.getJSONObject("license_register_request").getString("head4");
