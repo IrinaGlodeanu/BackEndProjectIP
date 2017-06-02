@@ -97,14 +97,14 @@ public class InterruptionRequestDocumentTests {
     public void behavioural_interruptionRequest_findById_should_return_true() throws Exception {
 
         //Act
-        InterruptionRequestDocument interruptionRequestDocumentToSave = new InterruptionRequestDocument();
+        InterruptionRequestDocument interruptionRequestDocumentToFind = new InterruptionRequestDocument();
 
-        when(interruptionRequestDocumentRepository.findOne(any(long.class))).thenReturn(interruptionRequestDocumentToSave);
+        when(interruptionRequestDocumentRepository.findOne(any(long.class))).thenReturn(interruptionRequestDocumentToFind);
 
-        interruptionRequestDocumentToSave = interruptionRequestDocumentServiceImpl.findById((long) 123);
+        interruptionRequestDocumentToFind = interruptionRequestDocumentServiceImpl.findById((long) 123);
 
         //Assert
-        assertNotNull(interruptionRequestDocumentToSave);
+        assertNotNull(interruptionRequestDocumentToFind);
     }
 
     @Test

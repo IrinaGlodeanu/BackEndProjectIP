@@ -4,12 +4,15 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertNull;
 import static org.mockito.Matchers.any;
-import static org.mockito.Matchers.eq;
-import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
-import com.documents.models.Student;
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
+
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -22,24 +25,14 @@ import com.documents.models.Document;
 import com.documents.repositories.DocumentRepository;
 import com.documents.services.DocumentServiceImpl;
 
-import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
-import javax.persistence.Query;
-import java.util.ArrayList;
-import java.util.List;
-
-/**
- * Created by pc on 5/26/2017.
- */
 
 @RunWith(MockitoJUnitRunner.class)
 public class DocumentTest {
-    @PersistenceContext
-    private EntityManager entityManager;
 
     @Mock
     DocumentRepository documentRepository;
-
+    @PersistenceContext
+    private EntityManager entityManager;
     @InjectMocks
     private DocumentServiceImpl documentService = new DocumentServiceImpl();
 
@@ -56,7 +49,7 @@ public class DocumentTest {
 
     }
 
-    //to
+
     @Test
     public void behavioural_document_save_should_return_true() {
         //Act
@@ -107,18 +100,18 @@ public class DocumentTest {
     public void functionality_document_findById_should_return_documentRequest() throws Exception {
         //Act
         Document documentToFind = new Document();
-        Document findedDocument;
+        Document foundedDocument;
 
         setup(documentToFind);
 
         when(documentRepository.findOne(any(long.class))).thenReturn(documentToFind);
 
-        findedDocument = documentService.findById((long) 3);
+        foundedDocument = documentService.findById((long) 3);
 
         //Assert
-        assertEquals(Long.valueOf(3), findedDocument.getId());
-        assertEquals("Document_Name", findedDocument.getDocumentName());
-        assertEquals("7", findedDocument.getValabilityInDays());
+        assertEquals(Long.valueOf(3), foundedDocument.getId());
+        assertEquals("Document_Name", foundedDocument.getDocumentName());
+        assertEquals("7", foundedDocument.getValabilityInDays());
     }
 
     @Test
@@ -136,7 +129,7 @@ public class DocumentTest {
     }
 
     @Test
-    public void functionality_document_deleteById_should_return_documentRequest() throws Exception {
+    public void functionality_document_deleteById_should_delete_documentRequest() throws Exception {
         //Act
         Document documentToDelete = new Document();
 
@@ -158,11 +151,11 @@ public class DocumentTest {
 
         documentListRequests.add(documentToAdd);
 
-        List<Document> findedDocumentList;
-        findedDocumentList = documentService.findAll();
+        List<Document> foundedDocumentList;
+        foundedDocumentList = documentService.findAll();
 
         //Assert
-        assertNotNull(findedDocumentList);
+        assertNotNull(foundedDocumentList);
 
     }
 
@@ -178,13 +171,13 @@ public class DocumentTest {
 
         documentListRequests.add(documentToAdd);
 
-        List<Document> findedDocumentList;
-        findedDocumentList = documentService.findAll();
+        List<Document> foundedDocumentList;
+        foundedDocumentList = documentService.findAll();
 
         //Assert
-        assertEquals(documentListRequests.get(0).getId(), findedDocumentList.get(0).getId());
-        assertEquals(documentListRequests.get(0).getDocumentName(), findedDocumentList.get(0).getDocumentName());
-        assertEquals(documentListRequests.get(0).getValabilityInDays(), findedDocumentList.get(0).getValabilityInDays());
+        assertEquals(documentListRequests.get(0).getId(), foundedDocumentList.get(0).getId());
+        assertEquals(documentListRequests.get(0).getDocumentName(), foundedDocumentList.get(0).getDocumentName());
+        assertEquals(documentListRequests.get(0).getValabilityInDays(), foundedDocumentList.get(0).getValabilityInDays());
     }
 
 
