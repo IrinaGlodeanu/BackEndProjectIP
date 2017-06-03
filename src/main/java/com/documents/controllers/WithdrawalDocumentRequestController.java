@@ -114,10 +114,11 @@ public class WithdrawalDocumentRequestController {
 
         //anul de stiud
         String yearStudy = withdrawalInput.getCurrentYear();
-        withdrawalDocumentRequest.setUniversityYear(Long.valueOf(yearStudy.substring(yearStudy.length() - 1)));
+
+        withdrawalDocumentRequest.setUniversityYear(Long.valueOf(withdrawalInput.getYearOfStudy()));
 
         //anul in care e
-        withdrawalDocumentRequest.setStudyYear(Long.valueOf(withdrawalInput.getYearOfStudy()));
+        withdrawalDocumentRequest.setStudyYear(Long.valueOf(yearStudy.substring(yearStudy.length() - 1)));
         withdrawalDocumentRequest.setTypeOfCourses(withdrawalInput.getCourse());
 
         this.withdrawalDocumentRequestService.save(withdrawalDocumentRequest);
